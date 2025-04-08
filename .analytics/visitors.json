@@ -1,0 +1,110 @@
+[
+  {
+    "id": "9fc5abaa-6075-419b-9fc2-3f0400c90d99",
+    "timestamp": "2025-04-06T02:36:10.689Z",
+    "sessionId": "70f71565-7574-430f-bbe2-eb1b5403a4a1",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  },
+  {
+    "id": "2b845894-74c7-43d4-9c36-f163c9fecd17",
+    "timestamp": "2025-04-06T04:15:32.542Z",
+    "sessionId": "5d855048-585e-453f-b14f-5a1dc20c4158",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  },
+  {
+    "id": "3a97dbe1-4e75-4d53-b9a1-617212d04cad",
+    "timestamp": "2025-04-06T04:32:49.699Z",
+    "sessionId": "72701b96-fab1-43fc-b50d-3dc6b0216aea",
+    "path": "/",
+    "referrer": "226.134",
+    "browser": "Chrome",
+    "device": "Mobile"
+  },
+  {
+    "id": "8fdc7a23-fab4-47ae-a247-f1dd9fcff623",
+    "timestamp": "2025-04-06T04:38:23.501Z",
+    "sessionId": "364d48d5-fd27-4bd7-a758-e580e792b748",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  },
+  {
+    "id": "b76bdf9a-b620-47f4-9d11-01bebd2c6d71",
+    "timestamp": "2025-04-06T10:07:40.566Z",
+    "sessionId": "4b036ac0-d09d-4a86-89d9-4d64b404a0ed",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  },
+  {
+    "id": "52ef8d67-b26b-4dcd-b94b-999d3b4d1d57",
+    "timestamp": "2025-04-06T10:08:27.056Z",
+    "sessionId": "8884eaf6-d919-4495-8157-cfa6a7b29f2d",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  },
+  {
+    "id": "3c1803ba-54bf-4301-813a-f9af25a4adf7",
+    "timestamp": "2025-04-06T10:09:19.237Z",
+    "sessionId": "050db55a-4ca1-4ab2-93db-8a12d4d9bb20",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  },
+  {
+    "id": "d395759a-90a0-4027-86b8-efbf345c4290",
+    "timestamp": "2025-04-06T10:09:36.085Z",
+    "sessionId": "71cce36a-fbd9-4782-9fcd-9061108c6f4f",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  },
+  {
+    "id": "42f2a07a-45f6-49d6-acea-092db427b7f4",
+    "timestamp": "2025-04-06T10:09:48.319Z",
+    "sessionId": "86d4cd2e-1e98-4759-85eb-1a55ed7b9405",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  },
+  {
+    "id": "41f2d9b5-1b3f-4d11-ab65-d793b368f4c6",
+    "timestamp": "2025-04-07T01:06:44.653Z",
+    "sessionId": "31baaac4-fc23-4abb-9d10-407b4cc2edb3",
+    "path": "/",
+    "referrer": "localhost",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "location": "Local Development",
+    "country": "Local"
+  }
+]

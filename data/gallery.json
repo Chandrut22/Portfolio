@@ -1,0 +1,199 @@
+[
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "E-commerce Website",
+    "title": "E-commerce Website",
+    "category": "Projects",
+    "description": "A fully responsive e-commerce platform with product management and checkout functionality."
+  },
+  {
+    "src": "/placeholder.svg?height=600&width=400",
+    "alt": "Mobile Banking App",
+    "title": "Mobile Banking App",
+    "category": "Projects",
+    "description": "A secure mobile banking application with transaction history and bill payments."
+  },
+  {
+    "src": "/placeholder.svg?height=500&width=500",
+    "alt": "Healthcare Dashboard",
+    "title": "Healthcare Dashboard",
+    "category": "Projects",
+    "description": "An interactive dashboard for healthcare professionals to monitor patient data."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Social Media Platform",
+    "title": "Social Media Platform",
+    "category": "Projects",
+    "description": "A social networking application with user profiles and real-time messaging."
+  },
+  {
+    "src": "/placeholder.svg?height=600&width=400",
+    "alt": "Travel Booking System",
+    "title": "Travel Booking System",
+    "category": "Projects",
+    "description": "A comprehensive travel booking system with flight and hotel reservations."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Learning Management System",
+    "title": "Learning Management System",
+    "category": "Projects",
+    "description": "An educational platform for course management and student progress tracking."
+  },
+  {
+    "src": "/placeholder.svg?height=500&width=500",
+    "alt": "Hiking Trip",
+    "title": "Hiking Trip",
+    "category": "Travel",
+    "description": "Exploring mountain trails during a weekend getaway."
+  },
+  {
+    "src": "/placeholder.svg?height=600&width=400",
+    "alt": "Beach Vacation",
+    "title": "Beach Vacation",
+    "category": "Travel",
+    "description": "Relaxing on the sandy shores of a tropical paradise."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "City Exploration",
+    "title": "City Exploration",
+    "category": "Travel",
+    "description": "Discovering the vibrant streets and architecture of a metropolitan city."
+  },
+  {
+    "src": "/placeholder.svg?height=500&width=500",
+    "alt": "Mountain Retreat",
+    "title": "Mountain Retreat",
+    "category": "Travel",
+    "description": "A peaceful cabin getaway surrounded by nature."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Conference Talk",
+    "title": "Conference Talk",
+    "category": "Events",
+    "description": "Presenting on modern web development techniques at a tech conference."
+  },
+  {
+    "src": "/placeholder.svg?height=600&width=400",
+    "alt": "Workshop Session",
+    "title": "Workshop Session",
+    "category": "Events",
+    "description": "Leading a hands-on coding workshop for aspiring developers."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Networking Event",
+    "title": "Networking Event",
+    "category": "Events",
+    "description": "Connecting with industry professionals at a networking mixer."
+  },
+  {
+    "src": "/placeholder.svg?height=500&width=500",
+    "alt": "Panel Discussion",
+    "title": "Panel Discussion",
+    "category": "Events",
+    "description": "Participating in a panel discussion on emerging technologies."
+  },
+  {
+    "src": "/placeholder.svg?height=600&width=400",
+    "alt": "Volunteer Work",
+    "title": "Volunteer Work",
+    "category": "Community",
+    "description": "Contributing time to a local community development project."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Charity Fundraiser",
+    "title": "Charity Fundraiser",
+    "category": "Community",
+    "description": "Organizing a fundraising event for a charitable cause."
+  },
+  {
+    "src": "/placeholder.svg?height=500&width=500",
+    "alt": "Mentorship Program",
+    "title": "Mentorship Program",
+    "category": "Community",
+    "description": "Mentoring young students interested in computer science."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Community Hackathon",
+    "title": "Community Hackathon",
+    "category": "Community",
+    "description": "Participating in a community hackathon to solve local problems."
+  },
+  {
+    "src": "/placeholder.svg?height=600&width=400",
+    "alt": "Award Ceremony",
+    "title": "Award Ceremony",
+    "category": "Recognition",
+    "description": "Receiving recognition for outstanding contributions to a project."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Team Celebration",
+    "title": "Team Celebration",
+    "category": "Recognition",
+    "description": "Celebrating a successful project launch with the development team."
+  },
+  {
+    "src": "/placeholder.svg?height=500&width=500",
+    "alt": "Certification Achievement",
+    "title": "Certification Achievement",
+    "category": "Recognition",
+    "description": "Completing a professional certification program with honors."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Project Milestone",
+    "title": "Project Milestone",
+    "category": "Recognition",
+    "description": "Reaching a significant milestone in a long-term development project."
+  },
+  {
+    "src": "/placeholder.svg?height=600&width=400",
+    "alt": "Workspace Setup",
+    "title": "Workspace Setup",
+    "category": "Lifestyle",
+    "description": "My ergonomic home office setup for productive remote work."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Morning Routine",
+    "title": "Morning Routine",
+    "category": "Lifestyle",
+    "description": "Starting the day with coffee and coding before meetings begin."
+  },
+  {
+    "src": "/placeholder.svg?height=500&width=500",
+    "alt": "Reading Corner",
+    "title": "Reading Corner",
+    "category": "Lifestyle",
+    "description": "A cozy spot for reading technical books and staying updated with industry trends."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Outdoor Coding",
+    "title": "Outdoor Coding",
+    "category": "Lifestyle",
+    "description": "Taking advantage of nice weather to code in the park."
+  },
+  {
+    "src": "/placeholder.svg?height=600&width=400",
+    "alt": "Tech Gadgets",
+    "title": "Tech Gadgets",
+    "category": "Lifestyle",
+    "description": "My collection of gadgets and tools that enhance productivity."
+  },
+  {
+    "src": "/placeholder.svg?height=400&width=600",
+    "alt": "Weekend Project",
+    "title": "Weekend Project",
+    "category": "Lifestyle",
+    "description": "Working on a personal coding project during the weekend."
+  }
+]
+

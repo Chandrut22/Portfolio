@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Bachelor of Technology - BTech, Artificial Intelligence and Data Science",
+    "company": "Knowledge Institute of Technology (KIOT)",
+    "period": "Oct 2021 - Sep 2025",
+    "description": "Pursuing B.Tech with a focus on AI and Data Science. Gained strong analytical and Python programming skills.",
+    "logo": "/placeholder.svg?height=40&width=40&text=KIOT"
+  },
+  {
+    "title": "Higher Secondary, Computer Science",
+    "company": "Sri Vinayaga Matriculation Higher Secondary School",
+    "period": "Jun 2020 - May 2021",
+    "description": "Completed higher secondary education with Computer Science specialization. Developed programming skills in C.",
+    "logo": "/placeholder.svg?height=40&width=40&text=SVMHSS"
+  },
+  {
+    "title": "SSLC",
+    "company": "Sri Vinayaga Matriculation Higher Secondary School",
+    "period": "Mar 2019",
+    "description": "Completed SSLC with distinction. Built a strong academic foundation.",
+    "logo": "/placeholder.svg?height=40&width=40&text=SVMHSS"
+  }
+]
