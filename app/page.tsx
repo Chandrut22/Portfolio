@@ -17,8 +17,7 @@ import BackgroundShapes from "@/components/background-shapes"
 import ProjectCard from "@/components/project-card"
 import { useTheme } from "next-themes"
 import GalleryGrid from "@/components/gallery-grid"
-import TrackedLink from "@/components/tracked-link"
-import { trackLinkClick, trackNavigationClick } from "@/lib/click-tracker"
+
 import { LeetCodeIcon } from "@/components/icons/leetcode-icon"
 import { GeeksForGeeksIcon } from "@/components/icons/geeksforgeeks-icon"
 import { Logo } from "@/components/logo"
@@ -112,7 +111,6 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
-                    onClick={() => trackLinkClick("hero-github", "https://github.com")}
                   >
                     <Github className="h-5 w-5" />
                   </a>
@@ -123,7 +121,6 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
-                    onClick={() => trackLinkClick("hero-linkedin", "https://linkedin.com")}
                   >
                     <Linkedin className="h-5 w-5" />
                   </a>
@@ -134,7 +131,6 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LeetCode"
-                    onClick={() => trackLinkClick("hero-leetcode", "https://leetcode.com")}
                   >
                     <LeetCodeIcon className="h-5 w-5" />
                   </a>
@@ -145,7 +141,6 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GeeksForGeeks"
-                    onClick={() => trackLinkClick("hero-gfg", "https://geeksforgeeks.org")}
                   >
                     <GeeksForGeeksIcon className="h-5 w-5" />
                   </a>
@@ -155,14 +150,13 @@ export default function Home() {
                     href="/john-doe-resume.pdf"
                     download
                     aria-label="Download Resume"
-                    onClick={() => trackLinkClick("hero-resume", "/john-doe-resume.pdf")}
                   >
                     <FileText className="h-4 w-4" />
                     <span>Resume</span>
                   </a>
                 </Button>
                 <Button asChild className="animate-bounce">
-                  <a href="#contact" onClick={() => trackNavigationClick("nav-contact-hero")}>
+                  <a href="#contact" >
                     Get In Touch
                   </a>
                 </Button>
@@ -511,31 +505,47 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-3">
                       <Github className="h-5 w-5 text-muted-foreground" />
-                      <TrackedLink href="https://github.com" id="github-link">
+                      <a
+                        href="https://github.com/johndoe"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary"
+                      >
                         github.com/johndoe
-                      </TrackedLink>
+                      </a>
                     </div>
                     <div className="flex items-center gap-3">
                       <Linkedin className="h-5 w-5 text-muted-foreground" />
-                      <TrackedLink href="https://linkedin.com" id="linkedin-link">
+                      <a
+                        href="https://linkedin.com/in/johndoe"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary"
+                      >
                         linkedin.com/in/johndoe
-                      </TrackedLink>
+                      </a>
                     </div>
                     <div className="flex items-center gap-3">
-                      <svg className="h-5 w-5 text-muted-foreground" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
-                      </svg>
-                      <TrackedLink href="https://leetcode.com/johndoe" id="leetcode-link">
+                      <LeetCodeIcon className="h-5 w-5 text-muted-foreground" />
+                      <a
+                        href="https://leetcode.com/johndoe"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary"
+                      >
                         leetcode.com/johndoe
-                      </TrackedLink>
+                      </a>
                     </div>
                     <div className="flex items-center gap-3">
-                      <svg className="h-5 w-5 text-muted-foreground" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M21.45 14.315c-.143-.8-.34-1.58-.585-2.332a10.512 10.512 0 0 0-.824-1.903c-.978-1.813-2.328-3.37-4.097-4.7a7.04 7.04 0 0 1 1.543-1.66c.67-.524 1.438-.9 2.25-1.144.872-.264 1.776-.397 2.684-.397.062 0 .124 0 .186.002.062-.002.124-.002.186-.002.908 0 1.812.133 2.684.397.812.244 1.58.62 2.25 1.144.759.592 1.364 1.27 1.848 2.055.484.785.853 1.677 1.086 2.67.234.992.351 2.085.351 3.256 0 1.143-.117 2.207-.351 3.2-.234.992-.602 1.885-1.086 2.67-.484.785-1.09 1.463-1.848 2.055-.67.524-1.438.9-2.25 1.144-.872.264-1.776.397-2.684.397-.062 0-.124 0-.186-.002-.062.002-.124.002-.186.002-.908 0-1.812-.133-2.684-.397-.812-.244 1.58.62 2.25-1.144-.759-.592-1.364-1.27-1.848-2.055-.484-.785-.853-1.677-1.086-2.67C-7.883 14.463-8 13.37-8 12.2c0-1.143.117-2.207.351-3.2.234-.992.602-1.885 1.086-2.67.484-.785 1.09-1.463 1.848-2.055.67-.524 1.438-.9 2.25-1.144.872-.264 1.776-.397 2.684-.397.062 0 .124 0 .186.002.062-.002.124-.002.186-.002.908 0 1.812.133 2.684.397.812.244 1.58.62 2.25 1.144a7.04 7.04 0 0 1 1.543 1.66c-1.77 1.33-3.12 2.887-4.097 4.7-.33.61-.607 1.245-.824 1.903-.246.752-.442-1.532.585 2.332zM12 16c-2.485 0-4.5-1.79-4.5-4s2.015-4 4.5-4 4.5 1.79 4.5 4-2.015 4-4.5 4z" />
-                      </svg>
-                      <TrackedLink href="https://auth.geeksforgeeks.org/user/johndoe" id="gfg-link">
+                      <GeeksForGeeksIcon className="h-5 w-5 text-muted-foreground" />
+                      <a
+                        href="https://auth.geeksforgeeks.org/user/johndoe"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary"
+                      >
                         geeksforgeeks.org/user/johndoe
-                      </TrackedLink>
+                      </a>
                     </div>
                   </CardContent>
                   <CardFooter>
