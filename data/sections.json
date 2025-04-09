@@ -1,0 +1,10 @@
+[
+  { "id": "home", "name": "Home" },
+  { "id": "skills", "name": "Skills" },
+  { "id": "experience", "name": "Experience" },
+  { "id": "projects", "name": "Projects" },
+  { "id": "education", "name": "Education" },
+  { "id": "certificates", "name": "Certificates" },
+  { "id": "gallery", "name": "Gallery" },
+  { "id": "contact", "name": "Contact" }
+]

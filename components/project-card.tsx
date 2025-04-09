@@ -98,4 +98,3 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     </motion.div>
   )
 }
-

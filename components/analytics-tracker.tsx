@@ -45,4 +45,3 @@ export default function AnalyticsTracker() {
   // This component doesn't render anything
   return null
 }
-

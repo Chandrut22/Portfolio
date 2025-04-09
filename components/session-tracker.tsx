@@ -48,4 +48,3 @@ export default function SessionTracker() {
   // This component doesn't render anything
   return null
 }
-

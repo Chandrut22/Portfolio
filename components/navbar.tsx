@@ -1,13 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Sun, Moon } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "next-themes"
 import { trackNavigationClick } from "@/lib/click-tracker"
 import { Logo } from "@/components/logo"
+import { ThemeToggle } from "@/components/theme-toggle"
+import sectionsData from "@/data/sections.json"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,17 +18,8 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // Sections including the new Projects section
-  const sections = [
-    { name: "Home", id: "home" },
-    { name: "Skills", id: "skills" },
-    { name: "Experience", id: "experience" },
-    { name: "Projects", id: "projects" },
-    { name: "Education", id: "education" },
-    { name: "Certificates", id: "certificates" },
-    { name: "Gallery", id: "gallery" },
-    { name: "Contact", id: "contact" },
-  ]
+  // Sections from JSON data
+  const sections = sectionsData
 
   // Make sure theme toggle only renders on client side
   useEffect(() => {
@@ -132,18 +125,7 @@ export default function Navbar() {
           ))}
 
           {/* Theme toggle as last item */}
-          {mounted && (
-            <motion.button
-              onClick={toggleTheme}
-              className="flex items-center text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            >
-              {theme === "dark" ? <Sun className="h-4 w-4 mr-1" /> : <Moon className="h-4 w-4 mr-1" />}
-              <span>Theme</span>
-            </motion.button>
-          )}
+          {mounted && <ThemeToggle />}
         </nav>
 
         {/* Mobile navigation */}
@@ -177,17 +159,7 @@ export default function Navbar() {
                 ))}
 
                 {/* Theme toggle for mobile */}
-                {mounted && (
-                  <motion.button
-                    onClick={toggleTheme}
-                    className="flex items-center text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-                    whileHover={{ x: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {theme === "dark" ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
-                    <span>Toggle Theme</span>
-                  </motion.button>
-                )}
+                {mounted && <ThemeToggle />}
               </nav>
             </motion.div>
           )}
@@ -196,4 +168,3 @@ export default function Navbar() {
     </motion.header>
   )
 }
-

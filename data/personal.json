@@ -1,0 +1,15 @@
+{
+  "name": "John Doe",
+  "title": "Full Stack Developer",
+  "tagline": "I build exceptional and accessible digital experiences for the web.",
+  "profileImage": "/placeholder.svg?height=320&width=320",
+  "location": "San Francisco, CA",
+  "email": "john.doe@example.com",
+  "phone": "+1 (555) 123-4567",
+  "socialLinks": {
+    "github": "https://github.com/johndoe",
+    "linkedin": "https://linkedin.com/in/johndoe",
+    "leetcode": "https://leetcode.com/johndoe",
+    "geeksforgeeks": "https://auth.geeksforgeeks.org/user/johndoe"
+  }
+}
