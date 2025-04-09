@@ -1,26 +1,42 @@
 [
   {
-    "title": "AWS Certified Solutions Architect",
-    "issuer": "Amazon Web Services",
-    "date": "2022",
-    "description": "Professional certification for designing distributed systems on AWS.",
-    "tags": ["Cloud", "AWS", "Architecture"],
+    "title": "Programming in Java",
+    "issuer": "NPTEL",
+    "date": "May 2024",
+    "description": "Completed NPTEL course on Java, covering core concepts and Object-Oriented Programming.",
+    "tags": ["Java", "OOP", "Certification"],
     "image": "/placeholder.svg?height=200&width=300"
   },
   {
-    "title": "Google Professional Cloud Developer",
-    "issuer": "Google Cloud",
-    "date": "2021",
-    "description": "Advanced certification for building scalable applications on Google Cloud Platform.",
-    "tags": ["Cloud", "GCP", "Development"],
+    "title": "Google Data Analytics Specialization",
+    "issuer": "Coursera",
+    "date": "July 2023",
+    "description": "Completed the Google Data Analytics Specialization covering data analysis, visualization, and business insights.",
+    "tags": ["Data Analytics", "Google", "Coursera"],
     "image": "/placeholder.svg?height=200&width=300"
   },
   {
-    "title": "Microsoft Certified: Azure Developer Associate",
-    "issuer": "Microsoft",
-    "date": "2020",
-    "description": "Certification for developing solutions using Azure services and technologies.",
-    "tags": ["Cloud", "Azure", "Development"],
+    "title": "Python (Basic)",
+    "issuer": "HackerRank",
+    "date": "December 2022",
+    "description": "Achieved certification in basic Python programming on HackerRank.",
+    "tags": ["Python", "Programming", "HackerRank"],
+    "image": "/placeholder.svg?height=200&width=300"
+  },
+  {
+    "title": "Machine Learning Fundamentals",
+    "issuer": "Infosys Springboard",
+    "date": "November 2022",
+    "description": "Completed foundational training in Machine Learning via Infosys Springboard.",
+    "tags": ["Machine Learning", "AI", "Infosys"],
+    "image": "/placeholder.svg?height=200&width=300"
+  },
+  {
+    "title": "Programming Essentials in Python",
+    "issuer": "Cisco",
+    "date": "June 2022",
+    "description": "Completed Cisco’s Programming Essentials in Python course, learning core Python programming concepts.",
+    "tags": ["Python", "Cisco", "Programming"],
     "image": "/placeholder.svg?height=200&width=300"
   }
 ]

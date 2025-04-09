@@ -1,23 +1,23 @@
 [
   {
-    "title": "Master of Computer Science",
-    "company": "Stanford University",
-    "period": "2018 - 2020",
-    "description": "Specialized in Artificial Intelligence and Machine Learning. Completed thesis on 'Neural Networks for Natural Language Processing'.",
-    "logo": "/placeholder.svg?height=40&width=40&text=SU"
+    "title": "Bachelor of Technology - BTech, Artificial Intelligence and Data Science",
+    "company": "Knowledge Institute of Technology (KIOT)",
+    "period": "Oct 2021 - Sep 2025",
+    "description": "Pursuing B.Tech with a focus on AI and Data Science. Gained strong analytical and Python programming skills.",
+    "logo": "/placeholder.svg?height=40&width=40&text=KIOT"
   },
   {
-    "title": "Bachelor of Science in Computer Engineering",
-    "company": "Massachusetts Institute of Technology",
-    "period": "2014 - 2018",
-    "description": "Graduated with honors. Participated in various hackathons and coding competitions. Member of the Computer Science Club.",
-    "logo": "/placeholder.svg?height=40&width=40&text=MIT"
+    "title": "Higher Secondary, Computer Science",
+    "company": "Sri Vinayaga Matriculation Higher Secondary School",
+    "period": "Jun 2020 - May 2021",
+    "description": "Completed higher secondary education with Computer Science specialization. Developed programming skills in C.",
+    "logo": "/placeholder.svg?height=40&width=40&text=SVMHSS"
   },
   {
-    "title": "High School Diploma",
-    "company": "Lincoln High School",
-    "period": "2010 - 2014",
-    "description": "Advanced Placement courses in Mathematics, Physics, and Computer Science. Valedictorian of graduating class.",
-    "logo": "/placeholder.svg?height=40&width=40&text=LHS"
+    "title": "SSLC",
+    "company": "Sri Vinayaga Matriculation Higher Secondary School",
+    "period": "Mar 2019",
+    "description": "Completed SSLC with distinction. Built a strong academic foundation.",
+    "logo": "/placeholder.svg?height=40&width=40&text=SVMHSS"
   }
 ]

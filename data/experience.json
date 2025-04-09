@@ -1,30 +1,23 @@
 [
   {
-    "title": "Senior Frontend Developer",
-    "company": "Tech Innovations Inc.",
-    "period": "2021 - Present",
-    "description": "Lead the frontend development team in building responsive web applications using React and Next.js. Implemented CI/CD pipelines and improved performance by 40%.",
-    "logo": "/placeholder.svg?height=40&width=40&text=TI"
+    "title": "Data Scientist Intern",
+    "company": "Punchbiz",
+    "period": "Jan 2024 – Mar 2024",
+    "description": "Developed an AI-powered Smart Attendance System using computer vision and deep learning. Worked on data annotation and trained YOLO models for real-time object detection.",
+    "logo": "company_logo/punchbiz_logo.png?height=80&width=80&text=PB"
   },
   {
-    "title": "Full Stack Developer",
-    "company": "Digital Solutions Ltd.",
-    "period": "2018 - 2021",
-    "description": "Developed and maintained full-stack applications using the MERN stack. Collaborated with designers to implement UI/UX improvements and integrated third-party APIs.",
-    "logo": "/placeholder.svg?height=40&width=40&text=DS"
+    "title": "Software Developer",
+    "company": "JSW Blooming Mill",
+    "period": "July 2023 – June 2024",
+    "description": "Automated production planning and resource allocation using Django and Python. Enhanced operational efficiency by optimizing scheduling and workflow management.",
+    "logo": "company_logo/jsw_logo.svg?height=80&width=80&text=JSW"
   },
   {
-    "title": "Junior Web Developer",
-    "company": "WebCraft Agency",
-    "period": "2016 - 2018",
-    "description": "Created responsive websites for clients across various industries. Worked with HTML, CSS, JavaScript, and WordPress to deliver custom solutions.",
-    "logo": "/placeholder.svg?height=40&width=40&text=WA"
-  },
-  {
-    "title": "Freelance Developer",
-    "company": "Self-employed",
-    "period": "2014 - 2016",
-    "description": "Designed and developed websites for small businesses and startups. Managed client relationships and delivered projects on time and within budget.",
-    "logo": "/placeholder.svg?height=40&width=40&text=FD"
+    "title": "Data Engineer Intern",
+    "company": "i18n Solution",
+    "period": "Oct 2022 – Mar 2023",
+    "description": "Extracted, cleaned, and processed large multilingual datasets for data pipelines. Contributed to scalable internationalization solutions for seamless multilingual data handling.",
+    "logo": "company_logo/i18nSolutions.png?height=80&width=80&text=i18n"
   }
 ]
