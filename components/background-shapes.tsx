@@ -560,7 +560,10 @@ export default function BackgroundShapes({ variant = "hero" }: BackgroundShapesP
                 key={`${variant}-shape-${index}`}
                 initial={shape.initial}
                 animate={shape.animate}
-                transition={shape.transition}
+                transition={{
+                  ...shape.transition,
+                  repeatType: shape.transition.repeatType as "reverse" | "loop" | "mirror",
+                }}
                 className={shape.className}
               />
             ))}

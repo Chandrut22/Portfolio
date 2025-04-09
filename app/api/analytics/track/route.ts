@@ -1,46 +1,48 @@
-import { type NextRequest, NextResponse } from "next/server"
-import { saveVisitor } from "@/lib/analytics/db"
-import { getGeoData, parseUserAgent, parseReferrer } from "@/lib/analytics/geo"
-import { v4 as uuidv4 } from "uuid"
+import { type NextRequest, NextResponse } from "next/server";
+import { saveVisitor } from "@/lib/analytics/db";
+import { getGeoData, parseUserAgent, parseReferrer } from "@/lib/analytics/geo";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(request: NextRequest) {
   try {
-    // Get client IP
-    const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || request.ip || "127.0.0.1"
+    // Get client IP (Edge Runtime doesn't support request.ip)
+    const forwardedFor = request.headers.get("x-forwarded-for");
+    const ip = forwardedFor?.split(",")[0]?.trim() || "127.0.0.1";
 
-    // Get request data
-    const data = await request.json()
-    const { path } = data
+    // Request body
+    const data = await request.json();
+    const { path } = data;
 
-    // Get referrer
-    const referrer = request.headers.get("referer")
-    const parsedReferrer = parseReferrer(referrer)
+    // Referrer & User Agent
+    const referrer = request.headers.get("referer") || "";
+    const parsedReferrer = parseReferrer(referrer);
 
-    // Get user agent
-    const userAgent = request.headers.get("user-agent") || ""
-    const { browser, device } = parseUserAgent(userAgent)
+    const userAgent = request.headers.get("user-agent") || "";
+    const { browser, device } = parseUserAgent(userAgent);
 
     // Get geolocation data
-    const geoData = await getGeoData(ip)
-
-    // Get or create session ID - Fix the async cookies issue
-    let sessionId = ""
-
+    let geoData = {};
     try {
-      // Use request cookies instead of the cookies() API
-      const cookieHeader = request.headers.get("cookie") || ""
+      geoData = await getGeoData(ip);
+    } catch (geoError) {
+      console.error("Geo location fetch failed:", geoError);
+    }
+
+    // Get or create session ID from cookie
+    let sessionId = "";
+    try {
+      const cookieHeader = request.headers.get("cookie") || "";
       const analyticsCookie = cookieHeader
         .split(";")
         .find((c) => c.trim().startsWith("analytics_session="))
-        ?.split("=")[1]
-
-      sessionId = analyticsCookie || uuidv4()
+        ?.split("=")[1];
+      sessionId = analyticsCookie || uuidv4();
     } catch (error) {
-      console.error("Error accessing cookies:", error)
-      sessionId = uuidv4()
+      console.error("Error parsing cookies:", error);
+      sessionId = uuidv4();
     }
 
-    // Save visitor data to MongoDB
+    // Save to DB
     await saveVisitor({
       sessionId,
       path,
@@ -48,11 +50,12 @@ export async function POST(request: NextRequest) {
       browser,
       device,
       ...geoData,
-    })
+    });
 
-    // Send notification email about the visit
+    // Send notification email (ensure it's a full URL)
     try {
-      await fetch("/api/notify-visit", {
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"; // define in .env
+      await fetch(`${baseUrl}/api/notify-visit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,15 +69,14 @@ export async function POST(request: NextRequest) {
           ip,
           ...geoData,
         }),
-      })
+      });
     } catch (emailError) {
-      console.error("Failed to send visit notification email:", emailError)
-      // Continue execution even if email fails
+      console.error("Failed to send visit notification email:", emailError);
     }
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error tracking visitor:", error)
-    return NextResponse.json({ error: "Failed to track visitor" }, { status: 500 })
+    console.error("Error tracking visitor:", error);
+    return NextResponse.json({ error: "Failed to track visitor" }, { status: 500 });
   }
 }

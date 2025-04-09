@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     // Sort visitors by timestamp (newest first)
     const recentVisitors = [...visitors]
       .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-      .slice(0, 50) // Limit to 50 most recent visitors
+      .slice(0, 20) // Limit to 50 most recent visitors
 
     // Ensure we're returning valid JSON
     return NextResponse.json({

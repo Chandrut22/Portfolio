@@ -8,15 +8,32 @@ export function useClickTracker(linkId: string) {
 
   // Load initial count
   useEffect(() => {
-    setClickCount(getLinkClickCount(linkId))
+    async function fetchClickCount() {
+      try {
+        const result = await getLinkClickCount(linkId)
+        const count = typeof result === "number" ? result : 0
+        setClickCount(count)
+      } catch (error) {
+        console.error("Failed to fetch click count:", error)
+        setClickCount(0)
+      }
+    }
+
+    fetchClickCount()
   }, [linkId])
 
   // Function to track a click
-  const trackClick = useCallback(() => {
-    const newCount = trackLinkClick(linkId)
-    setClickCount(newCount)
-    return newCount
-  }, [linkId])
+  const trackClick = useCallback(async () => {
+    try {
+      const result = await trackLinkClick(linkId)
+      const newCount = typeof result === "number" ? result : clickCount
+      setClickCount(newCount)
+      return newCount
+    } catch (error) {
+      console.error("Failed to track link click:", error)
+      return clickCount // Fallback
+    }
+  }, [linkId, clickCount])
 
   return { clickCount, trackClick }
 }

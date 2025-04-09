@@ -219,7 +219,7 @@ export default function AnalyticsPanel() {
 
       setSummary(summary)
       setVisitorData(
-        visitors.map((visitor) => ({
+        visitors.map((visitor: Visitor) => ({
           ...visitor,
           timestamp: new Date(visitor.timestamp),
         })),
