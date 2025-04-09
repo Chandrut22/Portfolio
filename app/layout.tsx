@@ -7,13 +7,12 @@ import SessionTracker from "@/components/session-tracker"
 import InitialLoader from "@/components/initial-loader"
 
 export const metadata = {
-  title: "John Doe - Portfolio",
+  title: "Chandru - Portfolio",
   description: "Full Stack Developer Portfolio",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-icon.png",
-  },
-    generator: 'v0.dev'
+    icon: "/logo.png",
+    apple: "/logo.png",
+  }
 }
 
 export default function RootLayout({
@@ -24,8 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link rel="icon" href="/logo.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
