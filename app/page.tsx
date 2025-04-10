@@ -251,8 +251,8 @@ export default function Home() {
               <motion.div variants={scaleIn}>
                 <Card className="h-full border-primary/20 bg-background/80 backdrop-blur transition-all duration-300 hover:border-primary hover:shadow-lg">
                   <CardHeader>
-                    <CardTitle>Frontend Development</CardTitle>
-                    <CardDescription>Building responsive and accessible user interfaces</CardDescription>
+                    <CardTitle>Programming Languages</CardTitle>
+                    <CardDescription>Writing efficient, scalable, and maintainable code for applications and systems.</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {frontendSkills.map((skill) => (
@@ -271,8 +271,8 @@ export default function Home() {
               <motion.div variants={scaleIn}>
                 <Card className="h-full border-primary/20 bg-background/80 backdrop-blur transition-all duration-300 hover:border-primary hover:shadow-lg">
                   <CardHeader>
-                    <CardTitle>Backend Development</CardTitle>
-                    <CardDescription>Creating robust and scalable server-side applications</CardDescription>
+                    <CardTitle>Frameworks & Libraries</CardTitle>
+                    <CardDescription>Pre-built tools for faster, efficient, and scalable application development.</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {backendSkills.map((skill) => (
@@ -291,8 +291,8 @@ export default function Home() {
               <motion.div variants={scaleIn} className="md:col-span-2 lg:col-span-1">
                 <Card className="h-full border-primary/20 bg-background/80 backdrop-blur transition-all duration-300 hover:border-primary hover:shadow-lg">
                   <CardHeader>
-                    <CardTitle>Tools & Technologies</CardTitle>
-                    <CardDescription>Supporting skills and development tools</CardDescription>
+                    <CardTitle>DevOps & Other Skills</CardTitle>
+                    <CardDescription>Automating deployment, managing infrastructure, and optimizing development workflows efficiently.</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {otherSkills.map((skill) => (

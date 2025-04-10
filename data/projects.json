@@ -2,7 +2,7 @@
   {
     "title": "Result Analysis and Visualization",
     "description": "Automated semester results analysis using Python and Pandas, enabling data-driven academic insights through Matplotlib and Seaborn visualizations.",
-    "image": "/placeholder.svg?height=400&width=600",
+    "image": "/project/REV.jpeg?height=400&width=600",
     "tags": ["Python", "Pandas", "Matplotlib", "Seaborn"],
     "demoLink": "",
     "codeLink": "",
@@ -11,7 +11,7 @@
   {
     "title": "LeafPredict: Plant Disease Detection",
     "description": "Image-based plant disease detection using CNN and TensorFlow with Django backend. Achieved high accuracy using advanced preprocessing and augmentation.",
-    "image": "/placeholder.svg?height=400&width=600",
+    "image": "/project/Leaf.jpeg?height=400&width=600",
     "tags": ["Python", "TensorFlow", "CNN", "Django", "Computer Vision"],
     "demoLink": "",
     "codeLink": "",
@@ -20,7 +20,7 @@
   {
     "title": "E-commerce API",
     "description": "Built a secure and scalable e-commerce backend with role-based access using Node.js, Express.js, MongoDB, and JWT. Included features like product management, search, and pagination.",
-    "image": "/placeholder.svg?height=400&width=600",
+    "image": "/project/API.jpeg?height=400&width=600",
     "tags": ["Node.js", "Express.js", "MongoDB", "JWT", "dotenv"],
     "demoLink": "",
     "codeLink": "",

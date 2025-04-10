@@ -12,12 +12,8 @@ export function LeetCodeIcon(props: React.SVGProps<SVGSVGElement>) {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
-    // Avoid rendering until the component is mounted
-    return null
-  }
-
-  const fillColor = theme === "dark" ? "#ffffff" : "#000000"
+  // Default to "#000000" before the component is mounted
+  const fillColor = !mounted ? "#000000" : theme === "dark" ? "#ffffff" : "#000000"
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
