@@ -5,17 +5,17 @@
     "date": "2024",
     "description": "Won the 24-hour AI/ML Hackathon for developing an AI-powered navigation system for visually impaired individuals using OpenCV and real-time audio feedback. Recognized with the KIOT Achievers Award 2024-25.",
     "tags": ["Award", "Hackathon", "AI/ML", "Computer Vision", "Innovation"],
-    "image": "/placeholder.svg?height=200&width=300"
+    "image": "/awards/bit_3.jpg?height=200&width=300"
   },
   
   
   {
     "title": "First Place - Make a Project (MAP) Expo",
     "issuer": "Knowledge Institute of Technology (KIOT)",
-    "date": "2024",
+    "date": "2023",
     "description": "Awarded First Place for 'Result Analysis and Visualization (RAV)', a Django-based project aimed at simplifying semester result analysis using Python, Pandas, Seaborn, and other tools. Inspired by real faculty challenges, our team developed a more efficient and visual alternative to Excel-based methods.",
     "tags": ["Award", "Project", "Data Visualization", "Python", "Django", "EducationTech"],
-    "image": "/placeholder.svg?height=200&width=300"
+    "image": "/awards/map1.jpg?height=200&width=300"
   },
   
   {
@@ -24,7 +24,7 @@
     "date": "2024",
     "description": "Received recognition for developing a production schedule automation system for JSW, significantly improving their production processes. Honored during the Achievers Day ceremony alongside teammates NAVEEN BALU, Hariharasudhan S, and VIDHUMITHAA G.",
     "tags": ["Award", "Consultancy Project", "Automation", "Production", "Innovation"],
-    "image": "/placeholder.svg?height=200&width=300"
+    "image": "/awards/best_project.jpg?height=200&width=300"
   }
   
 ]

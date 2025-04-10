@@ -13,3 +13,17 @@ export default function Loading() {
     </div>
   )
 }
+// import { BoltLoader } from "react-awesome-loaders";
+
+// export default function Loading() {
+//   return (
+//     <>
+//       <BoltLoader
+//         className={"loaderbolt"}
+//         boltColor={"#3b82f6"}
+//         backgroundBlurColor={"#E0E7FF"}
+//       />
+//     </>
+//   )
+// }
+

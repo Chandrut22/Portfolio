@@ -5,7 +5,7 @@
     "date": "May 2024",
     "description": "Completed NPTEL course on Java, covering core concepts and Object-Oriented Programming.",
     "tags": ["Java", "OOP", "Certification"],
-    "image": "/placeholder.svg?height=200&width=300"
+    "image": "/certificates/java_page-0001 (2).jpg?height=200&width=300"
   },
   {
     "title": "Google Data Analytics Specialization",
@@ -13,7 +13,7 @@
     "date": "July 2023",
     "description": "Completed the Google Data Analytics Specialization covering data analysis, visualization, and business insights.",
     "tags": ["Data Analytics", "Google", "Coursera"],
-    "image": "/placeholder.svg?height=200&width=300"
+    "image": "/certificates/google_data_analytics.jpg?height=200&width=300"
   },
   {
     "title": "Python (Basic)",
@@ -21,7 +21,7 @@
     "date": "December 2022",
     "description": "Achieved certification in basic Python programming on HackerRank.",
     "tags": ["Python", "Programming", "HackerRank"],
-    "image": "/placeholder.svg?height=200&width=300"
+    "image": "/certificates/python.png?height=200&width=300"
   },
   {
     "title": "Machine Learning Fundamentals",
@@ -29,7 +29,7 @@
     "date": "November 2022",
     "description": "Completed foundational training in Machine Learning via Infosys Springboard.",
     "tags": ["Machine Learning", "AI", "Infosys"],
-    "image": "/placeholder.svg?height=200&width=300"
+    "image": "/certificates/Machine Learning Fundamentals.jpg?height=200&width=300"
   },
   {
     "title": "Programming Essentials in Python",
@@ -37,6 +37,6 @@
     "date": "June 2022",
     "description": "Completed Cisco’s Programming Essentials in Python course, learning core Python programming concepts.",
     "tags": ["Python", "Cisco", "Programming"],
-    "image": "/placeholder.svg?height=200&width=300"
+    "image": "/certificates/CHANDRUT-INDIA_INTERNSHIP.jpg?height=200&width=300"
   }
 ]
