@@ -44,7 +44,7 @@ export async function verifyAuth(request?: NextRequest): Promise<boolean> {
       }
     } else {
       // For server actions
-      const cookieStore = cookies()
+      const cookieStore = await cookies()
       token = cookieStore.get("analytics_token")?.value
     }
 

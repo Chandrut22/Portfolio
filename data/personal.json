@@ -1,15 +1,15 @@
 {
-  "name": "John Doe",
-  "title": "Full Stack Developer",
+  "name": "Chandru",
+  "title": "AI enthusiast and Full Stack Developer",
   "tagline": "I build exceptional and accessible digital experiences for the web.",
   "profileImage": "/placeholder.svg?height=320&width=320",
-  "location": "San Francisco, CA",
-  "email": "john.doe@example.com",
-  "phone": "+1 (555) 123-4567",
+  "location": "Namakkal, Tamil Nadu, India",
+  "email": "Chandru T",
+  "phone": "=91 82207 88376",
   "socialLinks": {
-    "github": "https://github.com/johndoe",
-    "linkedin": "https://linkedin.com/in/johndoe",
-    "leetcode": "https://leetcode.com/johndoe",
-    "geeksforgeeks": "https://auth.geeksforgeeks.org/user/johndoe"
+    "github": "https://github.com/Chandrut22",
+    "linkedin": "https://www.linkedin.com/in/chandrut22/",
+    "leetcode": "https://leetcode.com/u/Chandrutd2004/",
+    "geeksforgeeks": "https://www.geeksforgeeks.org/user/chandru22/"
   }
 }

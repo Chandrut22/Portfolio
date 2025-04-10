@@ -554,25 +554,25 @@ export default function Home() {
                     <div className="flex items-center gap-3">
                       <Github className="h-5 w-5 text-muted-foreground" />
                       <TrackedLink href={personalData.socialLinks.github} id="github-link">
-                        github.com/johndoe
+                        <span>{personalData.socialLinks.github.replace("https://", "")}</span>
                       </TrackedLink>
                     </div>
                     <div className="flex items-center gap-3">
                       <Linkedin className="h-5 w-5 text-muted-foreground" />
                       <TrackedLink href={personalData.socialLinks.linkedin} id="linkedin-link">
-                        linkedin.com/in/johndoe
+                        <span>{personalData.socialLinks.linkedin.replace("https://www.", "")}</span>
                       </TrackedLink>
                     </div>
                     <div className="flex items-center gap-3">
                       <LeetCodeIcon className="h-5 w-5 text-muted-foreground" />
                       <TrackedLink href={personalData.socialLinks.leetcode} id="leetcode-link">
-                        leetcode.com/johndoe
+                        <span>{personalData.socialLinks.leetcode.replace("https://", "")}</span>
                       </TrackedLink>
                     </div>
                     <div className="flex items-center gap-3">
                       <GeeksForGeeksIcon className="h-5 w-5 text-muted-foreground" />
                       <TrackedLink href={personalData.socialLinks.geeksforgeeks} id="gfg-link">
-                        geeksforgeeks.org/user/johndoe
+                        <span>{personalData.socialLinks.geeksforgeeks.replace("https://www.", "")}</span>
                       </TrackedLink>
                     </div>
                   </CardContent>

@@ -1,11 +1,23 @@
 "use client"
 
-import type React from "react"
+import React, { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 
 export function LeetCodeIcon(props: React.SVGProps<SVGSVGElement>) {
   const { theme } = useTheme()
-  const fillColor = theme === "dark" ? "#000000" : "#ffffff" 
+  const [mounted, setMounted] = useState(false)
+
+  // Ensure the component is mounted before rendering
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    // Avoid rendering until the component is mounted
+    return null
+  }
+
+  const fillColor = theme === "dark" ? "#ffffff" : "#000000"
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>

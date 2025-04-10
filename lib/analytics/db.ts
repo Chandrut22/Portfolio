@@ -32,7 +32,14 @@ export const getVisitors = async (): Promise<Visitor[]> => {
     const collection = db.collection("visitors")
 
     const visitors = await collection.find({}).toArray()
-    return visitors as Visitor[]
+    const mappedVisitors: Visitor[] = visitors.map((doc) => ({
+      id: doc.id || doc._id.toString(),
+      timestamp: doc.timestamp,
+      country: doc.country,
+      referrer: doc.referrer,
+      path: doc.path,
+    }))
+    return mappedVisitors
   } catch (error) {
     console.error("Error getting visitors:", error)
     return []
@@ -54,7 +61,14 @@ export const generateAnalyticsSummary = async (): Promise<AnalyticsSummary> => {
       .find({
         timestamp: { $gt: thirtyDaysAgo },
       })
-      .toArray()) as Visitor[]
+      .toArray())
+      .map((doc) => ({
+        id: doc.id || doc._id.toString(),
+        timestamp: doc.timestamp,
+        country: doc.country,
+        referrer: doc.referrer,
+        path: doc.path,
+      })) as Visitor[]
 
     // If no recent visitors, return empty summary
     if (recentVisitors.length === 0) {

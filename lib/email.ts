@@ -7,33 +7,72 @@ type EmailData = {
   message: string
 }
 
-// Create a transporter using the default SMTP transport
+// Create a reusable transporter object using SMTP transport
 const createTransporter = () => {
-  // For development/testing, you can use a service like Mailtrap or Ethereal
-  // In production, use your actual SMTP settings
+  // For development/testing, create a test account
+  if (process.env.NODE_ENV === "development" && (!process.env.SMTP_HOST || !process.env.SMTP_USER)) {
+    return nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: "ethereal.user@ethereal.email", // generated ethereal user
+        pass: "ethereal_pass", // generated ethereal password
+      },
+    })
+  }
+
+  // For production, use configured SMTP settings
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.example.com",
+    host: process.env.SMTP_HOST,
     port: Number.parseInt(process.env.SMTP_PORT || "587"),
     secure: process.env.SMTP_SECURE === "true",
     auth: {
-      user: process.env.SMTP_USER || "",
-      pass: process.env.SMTP_PASSWORD || "",
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASSWORD,
+    },
+    tls: {
+      // Do not fail on invalid certs
+      rejectUnauthorized: false,
     },
   })
 }
 
 export async function sendEmail(data: EmailData): Promise<boolean> {
   try {
-    // Log the email data for demonstration purposes
-    console.log("Sending email with data:", data)
+    // Log the email data for debugging
+    console.log("Attempting to send email with data:", {
+      name: data.name,
+      email: data.email,
+      subject: data.subject,
+      messageLength: data.message.length,
+    })
 
-    // In a development environment, just log the email and return success
-    if (process.env.NODE_ENV === "development") {
-      console.log("Email would be sent in production with data:", data)
-      return true
+    // Create test account for development if needed
+    let testAccount
+    let transporter
+
+    if (process.env.NODE_ENV === "development" && (!process.env.SMTP_HOST || !process.env.SMTP_USER)) {
+      testAccount = await nodemailer.createTestAccount()
+
+      transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false,
+        auth: {
+          user: testAccount.user,
+          pass: testAccount.pass,
+        },
+      })
+
+      console.log("Created test account:", testAccount.user)
+    } else {
+      transporter = createTransporter()
     }
 
-    const transporter = createTransporter()
+    // Verify SMTP connection configuration
+    await transporter.verify()
+    console.log("SMTP connection verified successfully")
 
     // Send mail with defined transport object
     const info = await transporter.sendMail({
@@ -61,6 +100,12 @@ ${data.message}
     })
 
     console.log("Message sent: %s", info.messageId)
+
+    // Preview URL for development (Ethereal)
+    if (testAccount) {
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
+    }
+
     return true
   } catch (error) {
     console.error("Error sending email:", error)
@@ -70,16 +115,33 @@ ${data.message}
 
 export async function sendVisitNotification(visitorData: any): Promise<boolean> {
   try {
-    // Log the notification data for demonstration purposes
-    console.log("Sending visit notification with data:", visitorData)
+    // Log the notification data for debugging
+    console.log("Attempting to send visit notification with data:", {
+      path: visitorData.path,
+      timestamp: visitorData.timestamp,
+    })
 
-    // In a development environment, just log the notification and return success
-    if (process.env.NODE_ENV === "development") {
-      console.log("Visit notification would be sent in production with data:", visitorData)
-      return true
+    // Create test account for development if needed
+    let testAccount
+    let transporter
+
+    if (process.env.NODE_ENV === "development" && (!process.env.SMTP_HOST || !process.env.SMTP_USER)) {
+      testAccount = await nodemailer.createTestAccount()
+
+      transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false,
+        auth: {
+          user: testAccount.user,
+          pass: testAccount.pass,
+        },
+      })
+
+      console.log("Created test account for notification:", testAccount.user)
+    } else {
+      transporter = createTransporter()
     }
-
-    const transporter = createTransporter()
 
     // Format the notification content
     const notificationContent = `
@@ -114,6 +176,12 @@ Referrer: ${visitorData.referrer || "Direct"}
     })
 
     console.log("Notification sent: %s", info.messageId)
+
+    // Preview URL for development (Ethereal)
+    if (testAccount) {
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
+    }
+
     return true
   } catch (error) {
     console.error("Error sending visit notification:", error)
