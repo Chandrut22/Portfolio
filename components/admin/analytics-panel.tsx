@@ -17,12 +17,24 @@ import {
   Timer,
   User,
   Briefcase,
+  Trash2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import type { Visitor, AnalyticsSummary } from "@/lib/analytics/types"
 import {
   getAllUsers,
@@ -35,6 +47,7 @@ import {
   getCurrentUserLinkClicks,
   getCurrentUserNavigationClicks,
   getCurrentUserProjectClicks,
+  clearAnalyticsData,
 } from "@/lib/click-tracker"
 
 export default function AnalyticsPanel() {
@@ -60,6 +73,8 @@ export default function AnalyticsPanel() {
   >({})
   const [userNavigationClicks, setUserNavigationClicks] = useState<Record<string, number>>({})
   const [userProjectClicks, setUserProjectClicks] = useState<Record<string, { count: number; lastClicked: string }>>({})
+  const [activeTab, setActiveTab] = useState("summary")
+  const [isClearing, setIsClearing] = useState(false)
 
   // Check if already authenticated on mount
   useEffect(() => {
@@ -74,30 +89,35 @@ export default function AnalyticsPanel() {
   // Load analytics data when panel is opened
   useEffect(() => {
     if (isOpen && isAuthenticated) {
-      const navClicks = getAllNavigationClicks()
-      setNavigationClicks(navClicks)
-
-      const clicks = getAllLinkClicks()
-      setLinkClicks(clicks)
-
-      const pClicks = getAllProjectClicks()
-      setProjectClicks(pClicks)
-
-      const sessions = getAllSessionDurations()
-      setSessionDurations(sessions)
-
-      const avgDuration = getAverageSessionDuration()
-      setAverageSessionDuration(avgDuration)
-
-      const allUsers = getAllUsers()
-      setUsers(allUsers)
-
-      // Set the first user as selected by default if there are users
-      if (Object.keys(allUsers).length > 0 && !selectedUserId) {
-        setSelectedUserId(Object.keys(allUsers)[0])
-      }
+      loadClientAnalyticsData()
     }
-  }, [isOpen, isAuthenticated, selectedUserId])
+  }, [isOpen, isAuthenticated])
+
+  // Function to load client-side analytics data
+  const loadClientAnalyticsData = () => {
+    const navClicks = getAllNavigationClicks()
+    setNavigationClicks(navClicks)
+
+    const clicks = getAllLinkClicks()
+    setLinkClicks(clicks)
+
+    const pClicks = getAllProjectClicks()
+    setProjectClicks(pClicks)
+
+    const sessions = getAllSessionDurations()
+    setSessionDurations(sessions)
+
+    const avgDuration = getAverageSessionDuration()
+    setAverageSessionDuration(avgDuration)
+
+    const allUsers = getAllUsers()
+    setUsers(allUsers)
+
+    // Set the first user as selected by default if there are users
+    if (Object.keys(allUsers).length > 0 && !selectedUserId) {
+      setSelectedUserId(Object.keys(allUsers)[0])
+    }
+  }
 
   // Load user-specific data when a user is selected
   useEffect(() => {
@@ -164,6 +184,34 @@ export default function AnalyticsPanel() {
     logout() // Automatically log out when panel is closed
   }
 
+  // Handle clearing analytics data
+  const handleClearData = () => {
+    setIsClearing(true)
+
+    try {
+      clearAnalyticsData()
+
+      // Reset all state
+      setNavigationClicks({})
+      setLinkClicks({})
+      setProjectClicks({})
+      setSessionDurations([])
+      setAverageSessionDuration(0)
+      setUsers({})
+      setSelectedUserId(null)
+      setUserLinkClicks({})
+      setUserNavigationClicks({})
+      setUserProjectClicks({})
+
+      // Reload empty data
+      loadClientAnalyticsData()
+    } catch (error) {
+      console.error("Error clearing analytics data:", error)
+    } finally {
+      setIsClearing(false)
+    }
+  }
+
   // Update the loadAnalyticsData function to use the auth token
   const loadAnalyticsData = async () => {
     setIsLoading(true)
@@ -226,28 +274,7 @@ export default function AnalyticsPanel() {
       )
 
       // Load client-side analytics data
-      const navClicks = getAllNavigationClicks()
-      setNavigationClicks(navClicks)
-
-      const clicks = getAllLinkClicks()
-      setLinkClicks(clicks)
-
-      const pClicks = getAllProjectClicks()
-      setProjectClicks(pClicks)
-
-      const sessions = getAllSessionDurations()
-      setSessionDurations(sessions)
-
-      const avgDuration = getAverageSessionDuration()
-      setAverageSessionDuration(avgDuration)
-
-      const allUsers = getAllUsers()
-      setUsers(allUsers)
-
-      // Set the first user as selected by default if there are users
-      if (Object.keys(allUsers).length > 0 && !selectedUserId) {
-        setSelectedUserId(Object.keys(allUsers)[0])
-      }
+      loadClientAnalyticsData()
     } catch (error) {
       console.error("Error loading analytics data:", error)
       setError(error instanceof Error ? error.message : "Failed to load analytics data")
@@ -325,6 +352,11 @@ export default function AnalyticsPanel() {
   // Get user-specific sessions
   const getUserSessions = (userId: string) => {
     return sessionDurations.filter((session) => session.userId === userId)
+  }
+
+  // Handle tab change
+  const handleTabChange = (value: string) => {
+    setActiveTab(value)
   }
 
   return (
@@ -458,19 +490,76 @@ export default function AnalyticsPanel() {
                     <p className="mt-4 text-muted-foreground">Loading analytics data...</p>
                   </div>
                 ) : (
-                  <Tabs defaultValue="summary">
-                    <TabsList className="grid w-full grid-cols-7">
-                      <TabsTrigger value="summary">Summary</TabsTrigger>
-                      <TabsTrigger value="visitors">Visitors</TabsTrigger>
-                      <TabsTrigger value="users">Users</TabsTrigger>
-                      <TabsTrigger value="navigation">Navigation</TabsTrigger>
-                      <TabsTrigger value="links">Link Clicks</TabsTrigger>
-                      <TabsTrigger value="projects">Projects</TabsTrigger>
-                      <TabsTrigger value="sessions">Sessions</TabsTrigger>
-                    </TabsList>
+                  <Tabs defaultValue="summary" value={activeTab} onValueChange={handleTabChange}>
+                    <div className="flex justify-between items-center mb-4">
+                      <TabsList className="grid w-full grid-cols-7">
+                        <TabsTrigger value="summary">Summary</TabsTrigger>
+                        <TabsTrigger value="visitors">Visitors</TabsTrigger>
+                        <TabsTrigger value="users">Users</TabsTrigger>
+                        <TabsTrigger value="navigation">Navigation</TabsTrigger>
+                        <TabsTrigger value="links">Link Clicks</TabsTrigger>
+                        <TabsTrigger value="projects">Projects</TabsTrigger>
+                        <TabsTrigger value="sessions">Sessions</TabsTrigger>
+                      </TabsList>
+
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="destructive" size="sm" className="ml-2">
+                            <Trash2 className="h-4 w-4 mr-1" /> Clear Data
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Clear Analytics Data</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This will permanently delete all analytics data stored in your browser. This action cannot
+                              be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={handleClearData}
+                              disabled={isClearing}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            >
+                              {isClearing ? (
+                                <>
+                                  <svg
+                                    className="animate-spin -ml-1 mr-2 h-4 w-4"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <circle
+                                      className="opacity-25"
+                                      cx="12"
+                                      cy="12"
+                                      r="10"
+                                      stroke="currentColor"
+                                      strokeWidth="4"
+                                    ></circle>
+                                    <path
+                                      className="opacity-75"
+                                      fill="currentColor"
+                                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                  </svg>
+                                  Clearing...
+                                </>
+                              ) : (
+                                <>
+                                  <Trash2 className="h-4 w-4 mr-2" /> Clear All Data
+                                </>
+                              )}
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
 
                     {/* Summary Tab */}
-                    <TabsContent value="summary" className="space-y-4 mt-4">
+                    <TabsContent value="summary" className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <Card>
                           <CardHeader className="pb-2">
@@ -578,7 +667,7 @@ export default function AnalyticsPanel() {
                     </TabsContent>
 
                     {/* Visitors Tab */}
-                    <TabsContent value="visitors" className="mt-4">
+                    <TabsContent value="visitors" className="space-y-4">
                       <Card>
                         <CardHeader>
                           <CardTitle>Recent Visitors</CardTitle>
@@ -627,7 +716,7 @@ export default function AnalyticsPanel() {
                     </TabsContent>
 
                     {/* Users Tab */}
-                    <TabsContent value="users" className="mt-4">
+                    <TabsContent value="users" className="space-y-4">
                       <Card>
                         <CardHeader>
                           <CardTitle>User Analytics</CardTitle>
@@ -900,7 +989,7 @@ export default function AnalyticsPanel() {
                     </TabsContent>
 
                     {/* Navigation Tab */}
-                    <TabsContent value="navigation" className="mt-4">
+                    <TabsContent value="navigation" className="space-y-4">
                       <Card>
                         <CardHeader>
                           <CardTitle>Navigation Clicks</CardTitle>
@@ -956,7 +1045,7 @@ export default function AnalyticsPanel() {
                     </TabsContent>
 
                     {/* Link Clicks Tab */}
-                    <TabsContent value="links" className="mt-4">
+                    <TabsContent value="links" className="space-y-4">
                       <Card>
                         <CardHeader>
                           <CardTitle>Link Clicks</CardTitle>
@@ -1016,7 +1105,7 @@ export default function AnalyticsPanel() {
                     </TabsContent>
 
                     {/* Projects Tab */}
-                    <TabsContent value="projects" className="mt-4">
+                    <TabsContent value="projects" className="space-y-4">
                       <Card>
                         <CardHeader>
                           <CardTitle>Project Clicks</CardTitle>
@@ -1096,7 +1185,7 @@ export default function AnalyticsPanel() {
                     </TabsContent>
 
                     {/* Sessions Tab */}
-                    <TabsContent value="sessions" className="mt-4">
+                    <TabsContent value="sessions" className="space-y-4">
                       <Card>
                         <CardHeader>
                           <CardTitle>User Sessions</CardTitle>

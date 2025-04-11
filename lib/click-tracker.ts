@@ -67,6 +67,35 @@ const saveAnalyticsData = (data: any) => {
   localStorage.setItem("portfolio-analytics", JSON.stringify(data))
 }
 
+// Clear all analytics data
+export const clearAnalyticsData = (): void => {
+  if (typeof window === "undefined") return
+
+  // Remove analytics data
+  localStorage.removeItem("portfolio-analytics")
+
+  // Keep the user ID but reset all other data
+  const userId = getUserId()
+  const newData = {
+    users: {
+      [userId]: {
+        firstVisit: new Date().toISOString(),
+        lastVisit: new Date().toISOString(),
+        totalSessions: 0,
+        totalDuration: 0,
+        linkClicks: {},
+        navigationClicks: {},
+        projectClicks: {},
+        sessionDurations: [],
+      },
+    },
+  }
+
+  saveAnalyticsData(newData)
+
+  console.log("Analytics data has been cleared")
+}
+
 // Start tracking a user session
 export const startUserSession = (): string => {
   if (typeof window === "undefined") return ""
