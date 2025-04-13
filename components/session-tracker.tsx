@@ -8,30 +8,6 @@ export default function SessionTracker() {
     // Start tracking session when component mounts
     const sessionId = startUserSession()
 
-    // Notify admin about the new visit
-    const notifyAdmin = async () => {
-      try {
-        await fetch("/api/notify-visit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            visitorId: sessionId,
-            timestamp: new Date().toISOString(),
-            userAgent: navigator.userAgent,
-            path: window.location.pathname,
-            referrer: document.referrer,
-          }),
-        })
-      } catch (error) {
-        console.error("Failed to send visit notification:", error)
-      }
-    }
-
-    // Send notification
-    notifyAdmin()
-
     // End tracking when component unmounts or page is closed
     const handleBeforeUnload = () => {
       endUserSession()

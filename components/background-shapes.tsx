@@ -370,19 +370,19 @@ export default function BackgroundShapes({ variant = "hero" }: BackgroundShapesP
           {
             initial: { opacity: 0, scale: 0 },
             animate: { opacity: 0.15, scale: 1 },
-            transition: { duration: 1.5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" },
+            transition: { duration: 1.5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" as "reverse" },
             className: "absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-primary/20 blur-3xl",
           },
           {
             initial: { opacity: 0, scale: 0 },
             animate: { opacity: 0.15, scale: 1 },
-            transition: { duration: 2, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 0.5 },
+            transition: { duration: 2, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" as "reverse", delay: 0.5 },
             className: "absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-purple-500/20 blur-3xl",
           },
           {
             initial: { opacity: 0, scale: 0, rotate: 0 },
             animate: { opacity: 0.1, scale: 1, rotate: 180 },
-            transition: { duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1 },
+            transition: { duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" as "reverse", delay: 1 },
             className: "absolute top-1/2 right-1/3 h-64 w-64 rounded-full bg-pink-500/20 blur-3xl",
           },
         ]
@@ -560,10 +560,7 @@ export default function BackgroundShapes({ variant = "hero" }: BackgroundShapesP
                 key={`${variant}-shape-${index}`}
                 initial={shape.initial}
                 animate={shape.animate}
-                transition={{
-                  ...shape.transition,
-                  repeatType: shape.transition.repeatType as "reverse" | "loop" | "mirror",
-                }}
+                transition={{ ...shape.transition, repeatType: shape.transition.repeatType as "reverse" | "loop" | "mirror" | undefined }}
                 className={shape.className}
               />
             ))}
