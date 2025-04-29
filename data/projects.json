@@ -13,8 +13,8 @@
     "description": "Image-based plant disease detection using CNN and TensorFlow with Django backend. Achieved high accuracy using advanced preprocessing and augmentation.",
     "image": "/project/Leaf.jpeg?height=400&width=600",
     "tags": ["Python", "TensorFlow", "CNN", "Django", "Computer Vision"],
-    "demoLink": "",
-    "codeLink": "",
+    "demoLink": "https://leafpredict-plant-disease-detection.onrender.com",
+    "codeLink": "https://github.com/Chandrut22/LeafPredict_Plant_Disease_Detection",
     "featured": true
   },
   {
