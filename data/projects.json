@@ -5,7 +5,7 @@
     "image": "/project/REV.jpeg?height=400&width=600",
     "tags": ["Python", "Pandas", "Matplotlib", "Seaborn"],
     "demoLink": "",
-    "codeLink": "",
+    "codeLink": "https://github.com/Chandrut22/Result_Analysis_and_Visualization",
     "featured": true
   },
   {
@@ -23,7 +23,7 @@
     "image": "/project/API.jpeg?height=400&width=600",
     "tags": ["Node.js", "Express.js", "MongoDB", "JWT", "dotenv"],
     "demoLink": "",
-    "codeLink": "",
+    "codeLink": "https://github.com/Chandrut22/E-commerce-Website",
     "featured": true
   }
   
