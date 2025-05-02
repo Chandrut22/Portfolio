@@ -25,6 +25,16 @@
     "demoLink": "",
     "codeLink": "https://github.com/Chandrut22/E-commerce-Website",
     "featured": true
+  },
+  {
+    "title": "TextSnap: OCR with Translation & Spell Check",
+    "description": "Smart web app for OCR-based text extraction, translation, and spell correction using Gemini Flash Lite and Django. Includes secure login, file management, and intuitive UI.",
+    "image": "/project/OCR.jpeg?height=400&width=600",
+    "tags": ["Python", "Django", "OCR", "Gemini API", "Translation", "Spell Check","Text Reader", "Web App"],
+    "demoLink": "https://ocr-4r70.onrender.com/",
+    "codeLink": "https://github.com/Chandrut22/OCR",
+    "featured": true
   }
+  
   
 ]
