@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo, useCallback } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -19,7 +19,7 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false)
 
   // Sections from JSON data
-  const sections = sectionsData
+  const sections = useMemo(() => sectionsData, [])
 
   // Make sure theme toggle only renders on client side
   useEffect(() => {
@@ -27,58 +27,43 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Add shadow to navbar when scrolled
-      if (window.scrollY > 10) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
-      }
-
-      // Update active section based on scroll position
-      const sectionElements = sections.map((section) => ({
-        id: section.id,
-        element: document.getElementById(section.id),
-      }))
-
-      const currentPosition = window.scrollY + 100
-
-      for (let i = sectionElements.length - 1; i >= 0; i--) {
-        const section = sectionElements[i]
-        if (section.element) {
-          const sectionTop = section.element.offsetTop
-          if (currentPosition >= sectionTop) {
-            if (activeSection !== section.id) {
-              setActiveSection(section.id)
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const y = window.scrollY
+        setScrolled(y > 10)
+        const currentPosition = y + 100
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const id = sections[i].id
+          const el = document.getElementById(id)
+          if (el) {
+            const top = el.offsetTop
+            if (currentPosition >= top) {
+              if (activeSection !== id) setActiveSection(id)
+              break
             }
-            break
           }
         }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [activeSection, sections])
-
-  const scrollToSection = (sectionId: string) => {
-    setIsMenuOpen(false)
-    // Track the navigation click
-    trackNavigationClick(`nav-${sectionId}`)
-
-    const element = document.getElementById(sectionId)
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: "smooth",
+        ticking = false
       })
     }
-  }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [activeSection, sections])
 
-  // Toggle theme function
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
+  const scrollToSection = useCallback((sectionId: string) => {
+    setIsMenuOpen(false)
+    trackNavigationClick(`nav-${sectionId}`)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      window.scrollTo({ top: element.offsetTop - 80, behavior: "smooth" })
+    }
+  }, [])
+
+  // Theme toggle handled by ThemeToggle component
 
   return (
     <motion.header
