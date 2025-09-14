@@ -68,7 +68,28 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){
             try{
-              // Suppress noisy FullStory errors injected by browser/preview extensions
+              // Preserve original fetch
+              var _origFetch = window.fetch;
+
+              // Wrapper to catch synchronous errors thrown by injected scripts (e.g. FullStory)
+              window.fetch = function(){
+                var args = arguments;
+                try{
+                  return (_origFetch || window.fetch).apply(this, args);
+                }catch(err){
+                  try{
+                    var s = (err && (err.stack || err.message || '')) + '';
+                    if(s.indexOf('fullstory') !== -1 || s.indexOf('fs.js') !== -1 || s.indexOf('edge.fullstory.com') !== -1){
+                      console.warn('Suppressed FullStory fetch error', err);
+                      // Return an empty successful-like response to avoid breaking callers
+                      return Promise.resolve(new Response(null, { status: 204 }));
+                    }
+                  }catch(e){}
+                  throw err;
+                }
+              };
+
+              // Suppress noisy FullStory errors and unhandled rejections
               window.addEventListener('error', function(e){
                 try{
                   var src = (e && e.filename) || '';
@@ -83,19 +104,14 @@ export default function RootLayout({
                 try{
                   var reason = ev && ev.reason;
                   var s = '';
-                  if(reason){
-                    s = (reason.stack || reason.message || String(reason));
-                  }
-                  if(s && s.indexOf('fullstory.com') !== -1){
-                    ev.preventDefault && ev.preventDefault();
-                    return true;
-                  }
+                  if(reason){ s = (reason.stack || reason.message || String(reason)); }
+                  if(s && s.indexOf('fullstory.com') !== -1){ ev.preventDefault && ev.preventDefault(); return true; }
                 }catch(err){}
               }, true);
 
               // Remove existing injected FullStory script tags if present
               try{
-                var scripts = document.querySelectorAll('script[src*="fullstory"]');
+                var scripts = document.querySelectorAll('script[src*="fullstory"], script[src*="edge.fullstory.com"], script[src*="/fs.js"]');
                 scripts.forEach(function(s){ s.parentNode && s.parentNode.removeChild(s); });
               }catch(err){}
             }catch(err){}
