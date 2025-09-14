@@ -9,7 +9,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
 import { trackLinkClick, trackNavigationClick } from "@/lib/click-tracker"
 import { LeetCodeIcon } from "@/components/icons/leetcode-icon"
 import { GeeksForGeeksIcon } from "@/components/icons/geeksforgeeks-icon"
@@ -52,7 +51,6 @@ const scaleIn = {
 }
 
 export default function Home() {
-  const { theme } = useTheme()
   const [formStatus, setFormStatus] = useState<{ message: string; type: "success" | "error" | "" }>({
     message: "",
     type: "",

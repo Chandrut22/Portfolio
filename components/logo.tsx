@@ -17,7 +17,7 @@ export function Logo({ className, onClick }: LogoProps) {
       whileTap={{ scale: 0.95 }}
     >
       <div className="relative h-20 w-20 overflow-hidden">
-        <img src="/logo.png" alt="logo" />
+        <img src="/logo.png" alt="logo" loading="lazy" decoding="async" className="h-full w-full object-contain" />
       </div>
     </motion.div>
   )

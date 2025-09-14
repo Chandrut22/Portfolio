@@ -106,16 +106,21 @@ export default function BackgroundShapes({ variant = "hero" }: BackgroundShapesP
     // Set canvas dimensions
     const setCanvasDimensions = () => {
       if (canvas) {
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        canvas.width = Math.floor(window.innerWidth * dpr)
+        canvas.height = Math.floor(window.innerHeight * dpr)
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       }
     }
 
     setCanvasDimensions()
-    window.addEventListener("resize", setCanvasDimensions)
+    window.addEventListener("resize", setCanvasDimensions, { passive: true })
 
     // Configuration
     const config = getConfig()
+    const area = (canvas.width * canvas.height) / 1e6
+    const densityFactor = Math.max(0.5, Math.min(1, area / 2))
+    const targetCount = Math.max(20, Math.floor(config.particleCount * densityFactor))
 
     // Define centerX and centerY here so they're available throughout the effect
     const centerX = canvas.width / 2
@@ -145,7 +150,7 @@ export default function BackgroundShapes({ variant = "hero" }: BackgroundShapesP
     const initializeParticles = () => {
       particles.length = 0 // Clear existing particles
 
-      for (let i = 0; i < config.particleCount; i++) {
+      for (let i = 0; i < targetCount; i++) {
         const radius = Math.random() * (config.size.max - config.size.min) + config.size.min
         let x = 0,
           y = 0,
