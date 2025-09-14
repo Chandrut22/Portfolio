@@ -36,7 +36,16 @@ const initializeAnalyticsData = (): {
   if (typeof window === "undefined") return { users: {} }
 
   const storedData = localStorage.getItem("portfolio-analytics")
-  const data = storedData ? JSON.parse(storedData) : { users: {} }
+  let data: any = { users: {} }
+  if (storedData && storedData.trim()) {
+    try {
+      data = JSON.parse(storedData)
+    } catch (err) {
+      console.warn("Invalid analytics data in localStorage, resetting", err)
+      localStorage.removeItem("portfolio-analytics")
+      data = { users: {} }
+    }
+  }
 
   // Ensure the current user exists in the data
   const userId = getUserId()
