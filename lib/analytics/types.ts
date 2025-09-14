@@ -2,7 +2,7 @@
 
 export interface Visitor {
   id: string // Unique identifier for the visitor (hashed IP)
-  timestamp: Date // When the visit occurred
+  timestamp: Date // When the visit occurred (UTC)
   location?: string // City, Country
   country?: string // Country code
   browser?: string // Browser name
@@ -10,6 +10,9 @@ export interface Visitor {
   referrer?: string // Where the visitor came from
   path?: string // Page they visited
   sessionId?: string // To track unique sessions
+  timezone?: string // IANA timezone of the visitor (e.g., 'America/New_York')
+  localDate?: string // Visitor's local calendar date (YYYY-MM-DD)
+  localTime?: string // Visitor's local time (HH:mm:ss)
 }
 
 export interface AnalyticsSummary {

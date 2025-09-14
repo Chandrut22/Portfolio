@@ -23,6 +23,17 @@ export async function POST(request: NextRequest) {
     // Get geolocation data
     const geoData = await getGeoData(ip)
 
+    // Compute visitor local date/time if timezone available
+    let localDate = ""
+    let localTime = ""
+    if (geoData.timezone) {
+      const now = new Date()
+      const dateFmt = new Intl.DateTimeFormat("en-CA", { year: "numeric", month: "2-digit", day: "2-digit", timeZone: geoData.timezone })
+      const timeFmt = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false, timeZone: geoData.timezone })
+      localDate = (dateFmt.format(now)).replace(/\//g, "-")
+      localTime = timeFmt.format(now)
+    }
+
     // Get or create session ID - Fix the async cookies issue
     let sessionId = ""
 
@@ -48,6 +59,8 @@ export async function POST(request: NextRequest) {
       browser,
       device,
       ...geoData,
+      localDate,
+      localTime,
     })
 
     return NextResponse.json({ success: true })

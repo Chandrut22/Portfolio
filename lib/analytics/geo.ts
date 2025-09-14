@@ -17,6 +17,7 @@ export const getGeoData = async (
 ): Promise<{
   location?: string
   country?: string
+  timezone?: string
 }> => {
   try {
     // Skip localhost IPs
@@ -37,6 +38,7 @@ export const getGeoData = async (
     return {
       location: data.city ? `${data.city}, ${data.country}` : data.country,
       country: data.country,
+      timezone: data.timezone,
     }
   } catch (error) {
     console.error("Error getting geolocation data:", error)

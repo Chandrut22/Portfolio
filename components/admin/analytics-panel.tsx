@@ -433,7 +433,11 @@ export default function AnalyticsPanel() {
                     </div>
                     <div className="flex items-center mt-1 text-xs text-muted-foreground">
                       <Clock className="h-3 w-3 mr-1" />
-                      <span>{formatDate(visitor.timestamp)}</span>
+                      {visitor.localDate && visitor.localTime ? (
+                        <span>{visitor.localDate} • {visitor.localTime} {visitor.timezone ? `(${visitor.timezone})` : ""}</span>
+                      ) : (
+                        <span>{formatDate(visitor.timestamp)}</span>
+                      )}
                     </div>
                     {visitor.path && <div className="mt-1 text-xs text-muted-foreground">Page: {visitor.path}</div>}
                   </div>

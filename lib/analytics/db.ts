@@ -60,9 +60,16 @@ export const getVisitors = async (): Promise<Visitor[]> => {
     return visitors.map((doc) => ({
       id: doc.id,
       timestamp: new Date(doc.timestamp),
+      location: doc.location,
       country: doc.country,
+      browser: doc.browser,
+      device: doc.device,
       referrer: doc.referrer,
       path: doc.path,
+      sessionId: doc.sessionId,
+      timezone: doc.timezone,
+      localDate: doc.localDate,
+      localTime: doc.localTime,
     })) as Visitor[]
   } catch (error) {
     console.error("Error getting visitors:", error)
@@ -98,9 +105,16 @@ export const generateAnalyticsSummary = async (): Promise<AnalyticsSummary> => {
         .map((doc) => ({
           id: doc.id,
           timestamp: new Date(doc.timestamp),
+          location: doc.location,
           country: doc.country,
+          browser: doc.browser,
+          device: doc.device,
           referrer: doc.referrer,
           path: doc.path,
+          sessionId: doc.sessionId,
+          timezone: doc.timezone,
+          localDate: doc.localDate,
+          localTime: doc.localTime,
         })) as Visitor[]
     }
 
