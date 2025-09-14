@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
-import { useTheme } from "next-themes"
 import { trackNavigationClick } from "@/lib/click-tracker"
 import { Logo } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -15,7 +14,6 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   // Sections from JSON data
