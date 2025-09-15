@@ -219,13 +219,16 @@ export default function Home() {
     ]
 
     return (
-      <Section id="skills" variant="skills" title="Skills & Expertise">
-        <div className="mx-auto rounded-2xl bg-neutral-900/90 p-6 shadow-inner md:p-8">
-          <div className="space-y-6">
-            <MarqueeRow icons={row1} direction="left" speed={30} />
-            <MarqueeRow icons={row2} direction="right" speed={32} />
-            <MarqueeRow icons={row3} direction="left" speed={34} />
-          </div>
+      <Section
+        id="skills"
+        variant="skills"
+        title="Skills & Expertise"
+        subtitle="Technologies and tools I’ve worked with across frontend, backend, and data projects."
+      >
+        <div className="space-y-8">
+          <MarqueeRow icons={row1} direction="left" speed={30} />
+          <MarqueeRow icons={row2} direction="right" speed={32} />
+          <MarqueeRow icons={row3} direction="left" speed={34} />
         </div>
       </Section>
     )
@@ -486,7 +489,7 @@ const SocialLink = ({ href, icon, label }: { href: string; icon: React.ReactNode
 )
 
 const SkillLogo = ({ name }: { name: string }) => (
-  <div className="h-20 w-20 rounded-lg border border-neutral-700/60 bg-neutral-800/80 shadow-sm transition-transform hover:scale-105 hover:shadow-[0_0_24px_rgba(59,130,246,0.35)]">
+  <div className="h-20 w-20 rounded-lg border border-white/10 bg-black/30 backdrop-blur-md shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-[0_0_24px_rgba(59,130,246,0.35)]">
     <div className="flex h-full w-full items-center justify-center">
       <img
         src={`/icons/${name}.svg`}
