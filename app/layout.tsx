@@ -83,13 +83,14 @@ export default function RootLayout({
                     return _origFetch.apply(this, args);
                   }catch(err){
                     try{
-                      var s = (err && (err.stack || err.message || '')) + '';
-                      if(s.indexOf('fullstory') !== -1 || s.indexOf('fs.js') !== -1 || s.indexOf('edge.fullstory.com') !== -1){
-                        console.warn('Suppressed FullStory fetch error', err);
-                        return Promise.resolve(new Response(null, { status: 204 }));
-                      }
+                      console.warn('Suppressed fetch error', err);
                     }catch(e){}
-                    throw err;
+                    try{
+                      return Promise.resolve(new Response(null, { status: 204 }));
+                    }catch(e2){
+                      // In environments without Response constructor, return a rejected promise
+                      return Promise.reject(err);
+                    }
                   }
                 };
               }
