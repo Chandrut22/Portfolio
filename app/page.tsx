@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, type FormEvent } from "react"
-import { Github, Linkedin, FileText, Mail, MapPin, Phone } from "lucide-react"
+import { Github, Linkedin, FileText, Mail, MapPin, Phone, Code, Braces, FileCode, Layers, Leaf, Server, Database, GitBranch, Boxes, BarChart3, Cog, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
@@ -460,6 +460,44 @@ const SocialLink = ({ href, icon, label }: { href: string; icon: React.ReactNode
   </a>
 )
 
+const getSkillIcon = (name: string) => {
+  const key = name.toLowerCase().replace(/[^a-z0-9]/g, "")
+  switch (key) {
+    case "c":
+    case "java":
+    case "javascript":
+      return <Braces className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "python":
+      return <FileCode className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "htmlcss":
+      return <Code className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "django":
+      return <Layers className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "springboot":
+      return <Leaf className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "nodejs":
+      return <Server className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "mysql":
+    case "mongodb":
+      return <Database className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "gitgithub":
+    case "git":
+      return <GitBranch className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "docker":
+      return <Boxes className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "dataanalyticsandvizualization":
+    case "dataanalyticsandvisualization":
+    case "dataanalytics":
+      return <BarChart3 className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "automation":
+      return <Cog className="h-4 w-4 text-primary" aria-hidden="true" />
+    case "webscraping":
+      return <Globe className="h-4 w-4 text-primary" aria-hidden="true" />
+    default:
+      return <Code className="h-4 w-4 text-primary" aria-hidden="true" />
+  }
+}
+
 const SkillCard = ({
   title,
   description,
@@ -475,8 +513,11 @@ const SkillCard = ({
       <CardContent className="space-y-4">
         {skills.map((skill) => (
           <div key={skill.name} className="space-y-2">
-            <div className="flex justify-between">
-              <span className="font-medium">{skill.name}</span>
+            <div className="flex items-center justify-between">
+              <span className="flex items-center gap-2 font-medium">
+                {getSkillIcon(skill.name)}
+                {skill.name}
+              </span>
               <span className="text-muted-foreground">{skill.level}%</span>
             </div>
             <Progress value={skill.level} className="h-2" />
