@@ -3,10 +3,9 @@
 import type React from "react"
 
 import { useState, type FormEvent } from "react"
-import { Github, Linkedin, FileText, Mail, MapPin, Phone, Code, Braces, FileCode, Layers, Leaf, Server, Database, GitBranch, Boxes, BarChart3, Cog, Globe } from "lucide-react"
+import { Github, Linkedin, FileText, Mail, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 import { trackLinkClick, trackNavigationClick } from "@/lib/click-tracker"
@@ -177,34 +176,60 @@ export default function Home() {
     </Section>
   )
 
-  // Render skills section
-  const renderSkills = () => (
-    <Section
-      id="skills"
-      variant="skills"
-      title="Skills & Expertise"
-      subtitle="I've spent several years honing my skills across various technologies. Here's an overview of my technical expertise and proficiency levels."
-    >
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <SkillCard
-          title="Frontend Development"
-          description="Building responsive and accessible user interfaces"
-          skills={skillsData.frontendSkills}
-        />
-        <SkillCard
-          title="Backend Development"
-          description="Creating robust and scalable server-side applications"
-          skills={skillsData.backendSkills}
-        />
-        <SkillCard
-          title="Tools & Technologies"
-          description="Supporting skills and development tools"
-          skills={skillsData.otherSkills}
-          className="md:col-span-2 lg:col-span-1"
-        />
-      </div>
-    </Section>
-  )
+  // Render skills section (logo grid with marquee rows)
+  const renderSkills = () => {
+    const row1 = [
+      "python",
+      "java",
+      "c",
+      "javascript",
+      "html",
+      "css",
+      "react",
+      "nextjs",
+      "django",
+      "springboot",
+      "nodejs",
+    ]
+
+    const row2 = [
+      "mysql",
+      "mongodb",
+      "docker",
+      "git",
+      "github",
+      "tailwind",
+      "framer",
+      "linux",
+      "postman",
+      "figma",
+    ]
+
+    const row3 = [
+      "pandas",
+      "numpy",
+      "matplotlib",
+      "seaborn",
+      "tensorflow",
+      "pytorch",
+      "scikit",
+      "selenium",
+      "beautifulsoup",
+      "fastapi",
+    ]
+
+    return (
+      <Section id="skills" variant="skills" title="Skills & Expertise">
+        <div className="mx-auto rounded-2xl bg-neutral-900/90 p-6 shadow-inner md:p-8">
+          <div className="space-y-6">
+            <MarqueeRow icons={row1} direction="left" speed={30} />
+            <MarqueeRow icons={row2} direction="right" speed={32} />
+            <MarqueeRow icons={row3} direction="left" speed={34} />
+          </div>
+        </div>
+      </Section>
+    )
+  }
 
   // Render experience section
   const renderExperience = () => (
@@ -460,77 +485,43 @@ const SocialLink = ({ href, icon, label }: { href: string; icon: React.ReactNode
   </a>
 )
 
-const getSkillIcon = (name: string) => {
-  const key = name.toLowerCase().replace(/[^a-z0-9]/g, "")
-  switch (key) {
-    case "c":
-    case "java":
-    case "javascript":
-      return <Braces className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "python":
-      return <FileCode className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "htmlcss":
-      return <Code className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "django":
-      return <Layers className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "springboot":
-      return <Leaf className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "nodejs":
-      return <Server className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "mysql":
-    case "mongodb":
-      return <Database className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "gitgithub":
-    case "git":
-      return <GitBranch className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "docker":
-      return <Boxes className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "dataanalyticsandvizualization":
-    case "dataanalyticsandvisualization":
-    case "dataanalytics":
-      return <BarChart3 className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "automation":
-      return <Cog className="h-6 w-6 text-primary" aria-hidden="true" />
-    case "webscraping":
-      return <Globe className="h-6 w-6 text-primary" aria-hidden="true" />
-    default:
-      return <Code className="h-6 w-6 text-primary" aria-hidden="true" />
-  }
-}
+const SkillLogo = ({ name }: { name: string }) => (
+  <div className="h-20 w-20 rounded-lg border border-neutral-700/60 bg-neutral-800/80 shadow-sm transition-transform hover:scale-105 hover:shadow-[0_0_24px_rgba(59,130,246,0.35)]">
+    <div className="flex h-full w-full items-center justify-center">
+      <img
+        src={`/icons/${name}.svg`}
+        alt={name}
+        className="h-10 w-10 object-contain invert"
+        onError={(e) => {
+          const img = e.currentTarget as HTMLImageElement
+          img.onerror = null
+          img.src = "/placeholder.svg"
+          img.classList.remove("invert")
+        }}
+      />
+    </div>
+  </div>
+)
 
-const SkillCard = ({
-  title,
-  description,
-  skills,
-  className = "",
-}: { title: string; description: string; skills: any[]; className?: string }) => (
-  <motion.div variants={scaleIn} className={className}>
-    <Card className="h-full border-primary/20 bg-background/80 backdrop-blur transition-all duration-300 hover:border-primary hover:shadow-lg">
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <TooltipProvider delayDuration={100}>
-          <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
-            {skills.map((skill) => (
-              <Tooltip key={skill.name}>
-                <TooltipTrigger asChild>
-                  <div className="group flex flex-col items-center gap-2">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-primary/20 bg-muted/40 text-primary shadow-sm transition-colors group-hover:border-primary group-hover:bg-background">
-                      {getSkillIcon(skill.name)}
-                    </div>
-                    <span className="sr-only">{skill.name}</span>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side="top">{skill.name}</TooltipContent>
-              </Tooltip>
-            ))}
-          </div>
-        </TooltipProvider>
-      </CardContent>
-    </Card>
-  </motion.div>
+const MarqueeRow = ({
+  icons,
+  direction = "left",
+  speed = 30,
+}: {
+  icons: string[]
+  direction?: "left" | "right"
+  speed?: number
+}) => (
+  <div className="marquee relative w-full overflow-hidden">
+    <div
+      className={`marquee-track w-max flex items-center gap-6 py-2 ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
+      style={{ animationDuration: `${speed}s` }}
+    >
+      {[...icons, ...icons].map((name, i) => (
+        <SkillLogo key={`${name}-${i}`} name={name} />
+      ))}
+    </div>
+  </div>
 )
 
 const CertificateGrid = ({ items }: { items: any[] }) => (
