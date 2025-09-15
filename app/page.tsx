@@ -6,7 +6,7 @@ import { useState, type FormEvent } from "react"
 import { Github, Linkedin, FileText, Mail, MapPin, Phone, Code, Braces, FileCode, Layers, Leaf, Server, Database, GitBranch, Boxes, BarChart3, Cog, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 import { trackLinkClick, trackNavigationClick } from "@/lib/click-tracker"
@@ -466,35 +466,35 @@ const getSkillIcon = (name: string) => {
     case "c":
     case "java":
     case "javascript":
-      return <Braces className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Braces className="h-6 w-6 text-primary" aria-hidden="true" />
     case "python":
-      return <FileCode className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <FileCode className="h-6 w-6 text-primary" aria-hidden="true" />
     case "htmlcss":
-      return <Code className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Code className="h-6 w-6 text-primary" aria-hidden="true" />
     case "django":
-      return <Layers className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Layers className="h-6 w-6 text-primary" aria-hidden="true" />
     case "springboot":
-      return <Leaf className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Leaf className="h-6 w-6 text-primary" aria-hidden="true" />
     case "nodejs":
-      return <Server className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Server className="h-6 w-6 text-primary" aria-hidden="true" />
     case "mysql":
     case "mongodb":
-      return <Database className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Database className="h-6 w-6 text-primary" aria-hidden="true" />
     case "gitgithub":
     case "git":
-      return <GitBranch className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <GitBranch className="h-6 w-6 text-primary" aria-hidden="true" />
     case "docker":
-      return <Boxes className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Boxes className="h-6 w-6 text-primary" aria-hidden="true" />
     case "dataanalyticsandvizualization":
     case "dataanalyticsandvisualization":
     case "dataanalytics":
-      return <BarChart3 className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <BarChart3 className="h-6 w-6 text-primary" aria-hidden="true" />
     case "automation":
-      return <Cog className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Cog className="h-6 w-6 text-primary" aria-hidden="true" />
     case "webscraping":
-      return <Globe className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Globe className="h-6 w-6 text-primary" aria-hidden="true" />
     default:
-      return <Code className="h-4 w-4 text-primary" aria-hidden="true" />
+      return <Code className="h-6 w-6 text-primary" aria-hidden="true" />
   }
 }
 
@@ -510,19 +510,24 @@ const SkillCard = ({
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
-        {skills.map((skill) => (
-          <div key={skill.name} className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-2 font-medium">
-                {getSkillIcon(skill.name)}
-                {skill.name}
-              </span>
-              <span className="text-muted-foreground">{skill.level}%</span>
-            </div>
-            <Progress value={skill.level} className="h-2" />
+      <CardContent>
+        <TooltipProvider delayDuration={100}>
+          <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
+            {skills.map((skill) => (
+              <Tooltip key={skill.name}>
+                <TooltipTrigger asChild>
+                  <div className="group flex flex-col items-center gap-2">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-primary/20 bg-muted/40 text-primary shadow-sm transition-colors group-hover:border-primary group-hover:bg-background">
+                      {getSkillIcon(skill.name)}
+                    </div>
+                    <span className="sr-only">{skill.name}</span>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side="top">{skill.name}</TooltipContent>
+              </Tooltip>
+            ))}
           </div>
-        ))}
+        </TooltipProvider>
       </CardContent>
     </Card>
   </motion.div>
