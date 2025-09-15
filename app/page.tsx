@@ -514,18 +514,25 @@ const MarqueeRow = ({
   icons: string[]
   direction?: "left" | "right"
   speed?: number
-}) => (
-  <div className="marquee relative w-full overflow-hidden">
-    <div
-      className={`marquee-track w-max flex items-center gap-6 py-2 ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
-      style={{ animationDuration: `${speed}s` }}
-    >
-      {[...icons, ...icons].map((name, i) => (
-        <SkillLogo key={`${name}-${i}`} name={name} />
-      ))}
+}) => {
+  const minItems = 14
+  let base: string[] = [...icons]
+  while (base.length < minItems) base = base.concat(icons)
+  const sequence = base.concat(base)
+
+  return (
+    <div className="marquee relative w-full overflow-hidden">
+      <div
+        className={`marquee-track w-max flex items-center gap-6 py-2 ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
+        style={{ animationDuration: `${speed}s` }}
+      >
+        {sequence.map((name, i) => (
+          <SkillLogo key={`${name}-${i}`} name={name} />
+        ))}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 const CertificateGrid = ({ items }: { items: any[] }) => (
   <motion.div variants={staggerContainer} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
