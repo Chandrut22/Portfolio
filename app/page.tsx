@@ -489,7 +489,7 @@ const SocialLink = ({ href, icon, label }: { href: string; icon: React.ReactNode
 )
 
 const SkillLogo = ({ name }: { name: string }) => (
-  <div className="h-20 w-20 rounded-lg border border-white/10 bg-black/30 backdrop-blur-md shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-[0_0_24px_rgba(59,130,246,0.35)]">
+  <div className="h-20 w-20 flex-none select-none rounded-lg border border-white/10 bg-black/30 backdrop-blur-md shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-[0_0_24px_rgba(59,130,246,0.35)]">
     <div className="flex h-full w-full items-center justify-center">
       <img
         src={`/icons/${name}.svg`}
