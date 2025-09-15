@@ -36,9 +36,9 @@ function useChart() {
 
 const ChartContainer = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"div"> & {
+  React.ComponentPropsWithoutRef<"div"> & {
     config: ChartConfig
-    children: React.ComponentProps<
+    children: React.ComponentPropsWithoutRef<
       typeof RechartsPrimitive.ResponsiveContainer
     >["children"]
   }
@@ -104,8 +104,8 @@ const ChartTooltip = RechartsPrimitive.Tooltip
 
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
-    React.ComponentProps<"div"> & {
+  React.ComponentPropsWithoutRef<typeof RechartsPrimitive.Tooltip> &
+    React.ComponentPropsWithoutRef<"div"> & {
       hideLabel?: boolean
       hideIndicator?: boolean
       indicator?: "line" | "dot" | "dashed"
@@ -260,7 +260,7 @@ const ChartLegend = RechartsPrimitive.Legend
 
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"div"> &
+  React.ComponentPropsWithoutRef<"div"> &
     Pick<RechartsPrimitive.LegendProps, "payload" | "verticalAlign"> & {
       hideIcon?: boolean
       nameKey?: string
