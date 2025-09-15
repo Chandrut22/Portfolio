@@ -68,26 +68,31 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){
             try{
-              // Preserve original fetch
-              var _origFetch = window.fetch;
+              if (typeof window === 'undefined') return;
+              if (window.__origFetchWrapped) return;
 
-              // Wrapper to catch synchronous errors thrown by injected scripts (e.g. FullStory)
-              window.fetch = function(){
-                var args = arguments;
-                try{
-                  return (_origFetch || window.fetch).apply(this, args);
-                }catch(err){
+              // Preserve a bound original fetch (if available)
+              var _origFetch = window.fetch && window.fetch.bind(window);
+              window.__origFetchWrapped = true;
+
+              // Only wrap if an original fetch exists
+              if (_origFetch) {
+                window.fetch = function(){
+                  var args = arguments;
                   try{
-                    var s = (err && (err.stack || err.message || '')) + '';
-                    if(s.indexOf('fullstory') !== -1 || s.indexOf('fs.js') !== -1 || s.indexOf('edge.fullstory.com') !== -1){
-                      console.warn('Suppressed FullStory fetch error', err);
-                      // Return an empty successful-like response to avoid breaking callers
-                      return Promise.resolve(new Response(null, { status: 204 }));
-                    }
-                  }catch(e){}
-                  throw err;
-                }
-              };
+                    return _origFetch.apply(this, args);
+                  }catch(err){
+                    try{
+                      var s = (err && (err.stack || err.message || '')) + '';
+                      if(s.indexOf('fullstory') !== -1 || s.indexOf('fs.js') !== -1 || s.indexOf('edge.fullstory.com') !== -1){
+                        console.warn('Suppressed FullStory fetch error', err);
+                        return Promise.resolve(new Response(null, { status: 204 }));
+                      }
+                    }catch(e){}
+                    throw err;
+                  }
+                };
+              }
 
               // Suppress noisy FullStory errors and unhandled rejections
               window.addEventListener('error', function(e){
