@@ -437,7 +437,7 @@ export default function Home() {
               />
             </div> */}
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} {personalData.name}. All rights reserved.
+              © {new Date().getUTCFullYear()} {personalData.name}. All rights reserved.
             </p>
           </div>
         </div>
