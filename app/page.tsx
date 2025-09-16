@@ -6,7 +6,6 @@ import { useState, type FormEvent } from "react"
 import { Github, Linkedin, FileText, Mail, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 import { trackLinkClick, trackNavigationClick } from "@/lib/click-tracker"
@@ -177,34 +176,63 @@ export default function Home() {
     </Section>
   )
 
-  // Render skills section
-  const renderSkills = () => (
-    <Section
-      id="skills"
-      variant="skills"
-      title="Skills & Expertise"
-      subtitle="I've spent several years honing my skills across various technologies. Here's an overview of my technical expertise and proficiency levels."
-    >
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <SkillCard
-          title="Frontend Development"
-          description="Building responsive and accessible user interfaces"
-          skills={skillsData.frontendSkills}
-        />
-        <SkillCard
-          title="Backend Development"
-          description="Creating robust and scalable server-side applications"
-          skills={skillsData.backendSkills}
-        />
-        <SkillCard
-          title="Tools & Technologies"
-          description="Supporting skills and development tools"
-          skills={skillsData.otherSkills}
-          className="md:col-span-2 lg:col-span-1"
-        />
-      </div>
-    </Section>
-  )
+  // Render skills section (logo grid with marquee rows)
+  const renderSkills = () => {
+    const row1 = [
+      "python",
+      "java",
+      "c",
+      "javascript",
+      "html",
+      "css",
+      "react",
+      "nextjs",
+      "django",
+      "springboot",
+      "nodejs",
+    ]
+
+    const row2 = [
+      "mysql",
+      "mongodb",
+      "docker",
+      "git",
+      "github",
+      "tailwind",
+      "framer",
+      "linux",
+      "postman",
+      "figma",
+    ]
+
+    const row3 = [
+      "pandas",
+      "numpy",
+      "matplotlib",
+      "seaborn",
+      "tensorflow",
+      "pytorch",
+      "scikit",
+      "selenium",
+      "beautifulsoup",
+      "fastapi",
+    ]
+
+    return (
+      <Section
+        id="skills"
+        variant="skills"
+        title="Skills & Expertise"
+        subtitle="Technologies and tools I’ve worked with across frontend, backend, and data projects."
+      >
+        <div className="space-y-8">
+          <MarqueeRow icons={row1} direction="left" speed={30} />
+          <MarqueeRow icons={row2} direction="right" speed={32} />
+          <MarqueeRow icons={row3} direction="left" speed={34} />
+        </div>
+      </Section>
+    )
+  }
 
   // Render experience section
   const renderExperience = () => (
@@ -409,7 +437,7 @@ export default function Home() {
               />
             </div> */}
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} {personalData.name}. All rights reserved.
+              © {new Date().getUTCFullYear()} {personalData.name}. All rights reserved.
             </p>
           </div>
         </div>
@@ -460,32 +488,51 @@ const SocialLink = ({ href, icon, label }: { href: string; icon: React.ReactNode
   </a>
 )
 
-const SkillCard = ({
-  title,
-  description,
-  skills,
-  className = "",
-}: { title: string; description: string; skills: any[]; className?: string }) => (
-  <motion.div variants={scaleIn} className={className}>
-    <Card className="h-full border-primary/20 bg-background/80 backdrop-blur transition-all duration-300 hover:border-primary hover:shadow-lg">
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {skills.map((skill) => (
-          <div key={skill.name} className="space-y-2">
-            <div className="flex justify-between">
-              <span className="font-medium">{skill.name}</span>
-              <span className="text-muted-foreground">{skill.level}%</span>
-            </div>
-            <Progress value={skill.level} className="h-2" />
-          </div>
-        ))}
-      </CardContent>
-    </Card>
-  </motion.div>
+const SkillLogo = ({ name }: { name: string }) => (
+  <div className="h-20 w-20 flex-none select-none rounded-lg border border-white/10 bg-black/30 backdrop-blur-md shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-[0_0_24px_rgba(59,130,246,0.35)]">
+    <div className="flex h-full w-full items-center justify-center">
+      <img
+        src={`/icons/${name}.svg`}
+        alt={name}
+        className="h-10 w-10 object-contain invert"
+        onError={(e) => {
+          const img = e.currentTarget as HTMLImageElement
+          img.onerror = null
+          img.src = "/placeholder.svg"
+          img.classList.remove("invert")
+        }}
+      />
+    </div>
+  </div>
 )
+
+const MarqueeRow = ({
+  icons,
+  direction = "left",
+  speed = 30,
+}: {
+  icons: string[]
+  direction?: "left" | "right"
+  speed?: number
+}) => {
+  const minItems = 14
+  let base: string[] = [...icons]
+  while (base.length < minItems) base = base.concat(icons)
+  const sequence = base.concat(base)
+
+  return (
+    <div className="marquee relative w-full overflow-hidden">
+      <div
+        className={`marquee-track w-max flex items-center gap-6 py-2 ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
+        style={{ animationDuration: `${speed}s` }}
+      >
+        {sequence.map((name, i) => (
+          <SkillLogo key={`${name}-${i}`} name={name} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const CertificateGrid = ({ items }: { items: any[] }) => (
   <motion.div variants={staggerContainer} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
