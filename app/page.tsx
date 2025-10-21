@@ -186,10 +186,10 @@ export default function Home() {
       "html",
       "css",
       "react",
-      "nextjs",
+      // "next-js",
       "django",
-      "springboot",
-      "nodejs",
+      "spring",
+      "node-js",
     ]
 
     const row2 = [
@@ -198,11 +198,12 @@ export default function Home() {
       "docker",
       "git",
       "github",
-      "tailwind",
-      "framer",
-      "linux",
+      "tailwindcss",
+      "postgresql",
+      // "linux",
       "postman",
-      "figma",
+      "grafana"
+      // "figma",
     ]
 
     const row3 = [
@@ -212,9 +213,9 @@ export default function Home() {
       "seaborn",
       "tensorflow",
       "pytorch",
-      "scikit",
-      "selenium",
-      "beautifulsoup",
+      "scikit-learn",
+      // "selenium",
+      // "beautifulsoup",
       "fastapi",
     ]
 
@@ -492,9 +493,9 @@ const SkillLogo = ({ name }: { name: string }) => (
   <div className="h-20 w-20 flex-none select-none rounded-lg border border-white/10 bg-black/30 backdrop-blur-md shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-[0_0_24px_rgba(59,130,246,0.35)]">
     <div className="flex h-full w-full items-center justify-center">
       <img
-        src={`/public/skill_icons/${name}.svg`}
+        src={`/skill_icons/${name}.svg`} // changed: remove leading /public
         alt={name}
-        className="h-10 w-10 object-contain invert"
+        className="h-10 w-10 object-contain"
         onError={(e) => {
           const img = e.currentTarget as HTMLImageElement
           img.onerror = null
